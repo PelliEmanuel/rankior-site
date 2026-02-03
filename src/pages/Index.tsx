@@ -3,11 +3,14 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import Stats from '@/components/Stats';
 import Features from '@/components/Features';
-import Pricing from '@/components/Pricing';
+import Modules from '@/components/Modules';
 import Process from '@/components/Process';
+import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
+import ContactSection from '@/components/ContactSection';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 
@@ -17,11 +20,14 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <Stats />
         <Features />
+        <Modules />
         <Process />
         <Pricing />
         <Testimonials />
         <FAQ />
+        <ContactSection />
         <FinalCTA />
       </main>
       <Footer />
