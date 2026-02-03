@@ -2,8 +2,23 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 const Navbar = () => {
+  const navLinks = [
+    { name: "Oferta", href: "#oferta" },
+    { name: "Cómo funciona", href: "#proceso" },
+    { name: "Precios", href: "#precios" },
+    { name: "FAQ", href: "#faq" },
+  ];
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
@@ -13,16 +28,53 @@ const Navbar = () => {
           </span>
         </div>
         
+        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#oferta" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Oferta</a>
-          <a href="#proceso" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Cómo funciona</a>
-          <a href="#precios" className="text-sm font-medium text-slate-300 hover:text-white transition-colors">Precios</a>
+          {navLinks.map((link) => (
+            <a 
+              key={link.name}
+              href={link.href} 
+              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+            >
+              {link.name}
+            </a>
+          ))}
         </div>
 
         <div className="flex items-center gap-4">
-          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6">
+          <Button className="hidden sm:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6">
             Agendar diagnóstico
           </Button>
+          
+          {/* Mobile Menu */}
+          <div className="md:hidden">
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="text-white">
+                  <Menu size={24} />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="bg-[#020617] border-white/10 text-white">
+                <SheetHeader>
+                  <SheetTitle className="text-white text-left">Menú</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-6 mt-10">
+                  {navLinks.map((link) => (
+                    <a 
+                      key={link.name}
+                      href={link.href} 
+                      className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                  <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-full py-6 text-lg">
+                    Agendar diagnóstico
+                  </Button>
+                </div>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
     </nav>
