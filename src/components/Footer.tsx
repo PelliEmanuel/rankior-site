@@ -1,0 +1,55 @@
+"use client";
+
+import React from 'react';
+
+const Footer = () => {
+  return (
+    <footer className="py-12 border-t border-white/10 bg-[#020617]">
+      <div className="container mx-auto px-4">
+        <div className="grid md:grid-cols-4 gap-12 mb-12">
+          <div className="col-span-2">
+            <span className="text-2xl font-bold tracking-tighter text-white mb-6 block">
+              Rankior<span className="text-indigo-500">.</span>
+            </span>
+            <p className="text-slate-500 max-w-xs">
+              Expertos en implementación de Odoo ERP para el mercado mexicano. Transformamos empresas con tecnología de clase mundial.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="text-white font-bold mb-6">Enlaces</h4>
+            <ul className="space-y-4 text-slate-500 text-sm">
+              <li><a href="#" className="hover:text-white transition-colors">Oferta</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Cómo funciona</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Precios</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-6">Legal</h4>
+            <ul className="space-y-4 text-slate-500 text-sm">
+              <li><a href="#" className="hover:text-white transition-colors">Privacidad</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Términos</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-600 text-sm">
+            © {new Date().getFullYear()} Rankior. Todos los derechos reservados.
+          </p>
+          <div className="flex gap-6">
+            {/* Social Icons Placeholder */}
+            <div className="w-5 h-5 bg-slate-800 rounded-full" />
+            <div className="w-5 h-5 bg-slate-800 rounded-full" />
+            <div className="w-5 h-5 bg-slate-800 rounded-full" />
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
