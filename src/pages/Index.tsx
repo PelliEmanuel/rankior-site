@@ -9,10 +9,12 @@ import Features from '@/components/Features';
 import MexicanLocalization from '@/components/MexicanLocalization';
 import Comparison from '@/components/Comparison';
 import Modules from '@/components/Modules';
+import SuccessStories from '@/components/SuccessStories';
 import Process from '@/components/Process';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import TrustBadges from '@/components/TrustBadges';
+import ResourceCenter from '@/components/ResourceCenter';
 import FAQ from '@/components/FAQ';
 import ContactSection from '@/components/ContactSection';
 import FinalCTA from '@/components/FinalCTA';
@@ -32,10 +34,12 @@ const Index = () => {
         <MexicanLocalization />
         <Comparison />
         <Modules />
+        <SuccessStories />
         <Process />
         <Pricing />
         <Testimonials />
         <TrustBadges />
+        <ResourceCenter />
         <FAQ />
         <ContactSection />
         <FinalCTA />
