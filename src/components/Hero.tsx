@@ -3,6 +3,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Calendar } from "lucide-react";
+import DiagnosticDialog from './DiagnosticDialog';
 
 const Hero = () => {
   return (
@@ -33,11 +34,13 @@ const Hero = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full h-14 px-8 text-lg font-semibold shadow-lg shadow-indigo-500/20">
-                Agendar diagnóstico 30 min
-              </Button>
-              <Button size="lg" variant="outline" className="border-white/10 bg-white/5 hover:bg-white/10 text-white rounded-full h-14 px-8 text-lg font-semibold backdrop-blur-sm">
-                Ver paquetes
+              <DiagnosticDialog>
+                <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full h-14 px-8 text-lg font-semibold shadow-lg shadow-indigo-500/20">
+                  Agendar diagnóstico 30 min
+                </Button>
+              </DiagnosticDialog>
+              <Button size="lg" variant="outline" asChild className="border-white/10 bg-white/5 hover:bg-white/10 text-white rounded-full h-14 px-8 text-lg font-semibold backdrop-blur-sm">
+                <a href="#precios">Ver paquetes</a>
               </Button>
             </div>
           </div>
@@ -63,9 +66,11 @@ const Hero = () => {
                 ))}
               </ul>
 
-              <Button className="w-full bg-white text-indigo-950 hover:bg-slate-100 h-14 rounded-xl text-lg font-bold">
-                Solicitar diagnóstico gratuito
-              </Button>
+              <DiagnosticDialog>
+                <Button className="w-full bg-white text-indigo-950 hover:bg-slate-100 h-14 rounded-xl text-lg font-bold">
+                  Solicitar diagnóstico gratuito
+                </Button>
+              </DiagnosticDialog>
               <p className="text-center text-slate-500 text-sm mt-4">
                 Sin compromiso. Cupos limitados por mes.
               </p>

@@ -10,6 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import DiagnosticDialog from './DiagnosticDialog';
 
 const Navbar = () => {
   const navLinks = [
@@ -42,9 +43,11 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Button className="hidden sm:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6">
-            Agendar diagnóstico
-          </Button>
+          <DiagnosticDialog>
+            <Button className="hidden sm:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6">
+              Agendar diagnóstico
+            </Button>
+          </DiagnosticDialog>
           
           {/* Mobile Menu */}
           <div className="md:hidden">
@@ -68,9 +71,11 @@ const Navbar = () => {
                       {link.name}
                     </a>
                   ))}
-                  <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-full py-6 text-lg">
-                    Agendar diagnóstico
-                  </Button>
+                  <DiagnosticDialog>
+                    <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-full py-6 text-lg">
+                      Agendar diagnóstico
+                    </Button>
+                  </DiagnosticDialog>
                 </div>
               </SheetContent>
             </Sheet>

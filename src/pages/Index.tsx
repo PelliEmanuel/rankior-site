@@ -20,6 +20,7 @@ import ContactSection from '@/components/ContactSection';
 import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Index = () => {
   return (
@@ -45,6 +46,7 @@ const Index = () => {
         <FinalCTA />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
