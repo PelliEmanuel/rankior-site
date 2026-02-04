@@ -21,6 +21,7 @@ import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const Index = () => {
   return (
@@ -29,21 +30,21 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <LogoCloud />
-        <Stats />
-        <Features />
-        <MexicanLocalization />
-        <Comparison />
-        <Modules />
-        <SuccessStories />
-        <Process />
-        <Pricing />
-        <Testimonials />
-        <TrustBadges />
-        <ResourceCenter />
-        <FAQ />
-        <ContactSection />
-        <FinalCTA />
+        <ScrollReveal><LogoCloud /></ScrollReveal>
+        <ScrollReveal><Stats /></ScrollReveal>
+        <ScrollReveal><Features /></ScrollReveal>
+        <ScrollReveal><MexicanLocalization /></ScrollReveal>
+        <ScrollReveal><Comparison /></ScrollReveal>
+        <ScrollReveal><Modules /></ScrollReveal>
+        <ScrollReveal><SuccessStories /></ScrollReveal>
+        <ScrollReveal><Process /></ScrollReveal>
+        <ScrollReveal><Pricing /></ScrollReveal>
+        <ScrollReveal><Testimonials /></ScrollReveal>
+        <ScrollReveal><TrustBadges /></ScrollReveal>
+        <ScrollReveal><ResourceCenter /></ScrollReveal>
+        <ScrollReveal><FAQ /></ScrollReveal>
+        <ScrollReveal><ContactSection /></ScrollReveal>
+        <ScrollReveal><FinalCTA /></ScrollReveal>
       </main>
       <Footer />
       <WhatsAppButton />
