@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
+import ROICalculator from '@/components/ROICalculator';
 import { 
   LayoutDashboard, 
   Users, 
@@ -76,7 +77,7 @@ const Services = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
             {services.map((service, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-all duration-300 group h-full flex flex-col">
@@ -100,6 +101,10 @@ const Services = () => {
             ))}
           </div>
 
+          <ScrollReveal>
+            <ROICalculator />
+          </ScrollReveal>
+
           <section className="mt-32 p-12 rounded-[3rem] bg-gradient-to-br from-indigo-600 to-blue-700 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
@@ -114,8 +119,8 @@ const Services = () => {
                       Hablar con un experto
                     </Button>
                   </DiagnosticDialog>
-                  <Button size="lg" variant="outline" className="border-white/20 bg-white/10 hover:bg-white/20 text-white rounded-full px-8 font-bold backdrop-blur-sm">
-                    Ver casos de éxito
+                  <Button size="lg" variant="outline" asChild className="border-white/20 bg-white/10 hover:bg-white/20 text-white rounded-full px-8 font-bold backdrop-blur-sm">
+                    <Link to="/casos">Ver casos de éxito</Link>
                   </Button>
                 </div>
               </div>
