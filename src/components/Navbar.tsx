@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import {
@@ -14,31 +15,42 @@ import DiagnosticDialog from './DiagnosticDialog';
 
 const Navbar = () => {
   const navLinks = [
-    { name: "Oferta", href: "#oferta" },
-    { name: "Cómo funciona", href: "#proceso" },
-    { name: "Precios", href: "#precios" },
-    { name: "FAQ", href: "#faq" },
+    { name: "Servicios", href: "/servicios", isExternal: false },
+    { name: "Oferta", href: "/#oferta", isExternal: false },
+    { name: "Cómo funciona", href: "/#proceso", isExternal: false },
+    { name: "Precios", href: "/#precios", isExternal: false },
+    { name: "FAQ", href: "/#faq", isExternal: false },
   ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-md">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <div className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <span className="text-2xl font-bold tracking-tighter text-white">
             Rankior<span className="text-indigo-500">.</span>
           </span>
-        </div>
+        </Link>
         
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a 
-              key={link.name}
-              href={link.href} 
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-            >
-              {link.name}
-            </a>
+            link.href.startsWith('/#') ? (
+              <a 
+                key={link.name}
+                href={link.href} 
+                className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+              >
+                {link.name}
+              </a>
+            ) : (
+              <Link 
+                key={link.name}
+                to={link.href} 
+                className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+              >
+                {link.name}
+              </Link>
+            )
           ))}
         </div>
 
@@ -63,13 +75,23 @@ const Navbar = () => {
                 </SheetHeader>
                 <div className="flex flex-col gap-6 mt-10">
                   {navLinks.map((link) => (
-                    <a 
-                      key={link.name}
-                      href={link.href} 
-                      className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </a>
+                    link.href.startsWith('/#') ? (
+                      <a 
+                        key={link.name}
+                        href={link.href} 
+                        className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <Link 
+                        key={link.name}
+                        to={link.href} 
+                        className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
+                      >
+                        {link.name}
+                      </Link>
+                    )
                   ))}
                   <DiagnosticDialog>
                     <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-full py-6 text-lg">

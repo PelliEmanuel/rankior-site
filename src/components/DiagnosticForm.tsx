@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,9 +9,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { showSuccess } from "@/utils/toast";
 
 const DiagnosticForm = () => {
+  const navigate = useNavigate();
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     showSuccess("¡Solicitud enviada! Nos pondremos en contacto en menos de 24 horas.");
+    // Simulate a small delay for better UX before redirecting
+    setTimeout(() => {
+      navigate('/gracias');
+    }, 1000);
   };
 
   return (
