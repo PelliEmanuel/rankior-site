@@ -1,15 +1,21 @@
 import { createClient } from 'contentful';
 
-// These should be set in your environment variables
-const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID || '';
-const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN || '';
+const SPACE_ID = import.meta.env.VITE_CONTENTFUL_SPACE_ID;
+const ACCESS_TOKEN = import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN;
 
-export const client = createClient({
-  space: SPACE_ID,
-  accessToken: ACCESS_TOKEN,
-});
+// Only initialize if credentials exist to avoid "Expected parameter accessToken" error
+export const client = SPACE_ID && ACCESS_TOKEN 
+  ? createClient({
+      space: SPACE_ID,
+      accessToken: ACCESS_TOKEN,
+    })
+  : null;
 
 export const getBlogPosts = async () => {
+  if (!client) {
+    console.warn('Contentful credentials missing. Using mock data.');
+    return [];
+  }
   try {
     const response = await client.getEntries({
       content_type: 'blogPost',
@@ -23,6 +29,7 @@ export const getBlogPosts = async () => {
 };
 
 export const getBlogPostById = async (slug: string) => {
+  if (!client) return null;
   try {
     const response = await client.getEntries({
       content_type: 'blogPost',
@@ -37,6 +44,7 @@ export const getBlogPostById = async (slug: string) => {
 };
 
 export const getCaseStudies = async () => {
+  if (!client) return [];
   try {
     const response = await client.getEntries({
       content_type: 'caseStudy',
@@ -50,6 +58,7 @@ export const getCaseStudies = async () => {
 };
 
 export const getCaseStudyById = async (slug: string) => {
+  if (!client) return null;
   try {
     const response = await client.getEntries({
       content_type: 'caseStudy',
