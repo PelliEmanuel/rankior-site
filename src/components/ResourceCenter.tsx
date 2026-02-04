@@ -5,7 +5,21 @@ import { motion } from 'framer-motion';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const posts = [
+interface Post {
+  id: string;
+  title: string;
+  excerpt: string;
+  category: string;
+  date: string;
+  author: string;
+  image: string;
+}
+
+interface ResourceCenterProps {
+  posts?: Post[];
+}
+
+const defaultPosts = [
   {
     id: "cfdi-4-0-odoo-17",
     title: "Guía definitiva: CFDI 4.0 en Odoo 17",
@@ -35,7 +49,7 @@ const posts = [
   }
 ];
 
-const ResourceCenter = () => {
+const ResourceCenter = ({ posts = defaultPosts }: ResourceCenterProps) => {
   return (
     <section id="recursos" className="py-24 bg-white/[0.01]">
       <div className="container mx-auto px-4">

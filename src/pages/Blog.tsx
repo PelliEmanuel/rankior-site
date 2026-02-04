@@ -1,14 +1,38 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import ResourceCenter from '@/components/ResourceCenter';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
+import { getBlogPosts } from '@/lib/cms';
 
 const Blog = () => {
+  const [posts, setPosts] = useState<any[] | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const cmsPosts = await getBlogPosts();
+      if (cmsPosts && cmsPosts.length > 0) {
+        // Map Contentful fields to our component structure
+        const mappedPosts = cmsPosts.map((item: any) => ({
+          id: item.fields.slug,
+          title: item.fields.title,
+          excerpt: item.fields.excerpt,
+          category: item.fields.category,
+          date: new Date(item.sys.createdAt).toLocaleDateString('es-MX', { month: 'short', day: 'numeric', year: 'numeric' }),
+          author: item.fields.author,
+          image: item.fields.featuredImage?.fields?.file?.url || "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800"
+        }));
+        setPosts(mappedPosts);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200">
       <BackgroundElements />
@@ -40,7 +64,7 @@ const Blog = () => {
           </div>
         </div>
 
-        <ResourceCenter />
+        <ResourceCenter posts={posts} />
       </main>
       <Footer />
       <WhatsAppButton />
