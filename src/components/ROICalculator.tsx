@@ -119,7 +119,7 @@ const ROICalculator = () => {
                     <p className="text-indigo-100 text-xs uppercase tracking-widest font-bold mb-1">Payback</p>
                     <div className="flex items-center gap-2">
                       <Clock size={20} />
-                      <span className="text-2xl font-bold">< 6 meses</span>
+                      <span className="text-2xl font-bold">{"< 6 meses"}</span>
                     </div>
                   </div>
                 </div>
