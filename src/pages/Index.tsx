@@ -7,10 +7,12 @@ import LogoCloud from '@/components/LogoCloud';
 import Stats from '@/components/Stats';
 import Features from '@/components/Features';
 import MexicanLocalization from '@/components/MexicanLocalization';
+import Comparison from '@/components/Comparison';
 import Modules from '@/components/Modules';
 import Process from '@/components/Process';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
+import TrustBadges from '@/components/TrustBadges';
 import FAQ from '@/components/FAQ';
 import ContactSection from '@/components/ContactSection';
 import FinalCTA from '@/components/FinalCTA';
@@ -28,10 +30,12 @@ const Index = () => {
         <Stats />
         <Features />
         <MexicanLocalization />
+        <Comparison />
         <Modules />
         <Process />
         <Pricing />
         <Testimonials />
+        <TrustBadges />
         <FAQ />
         <ContactSection />
         <FinalCTA />
