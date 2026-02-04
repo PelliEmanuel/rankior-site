@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -8,9 +9,9 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
-            <span className="text-2xl font-bold tracking-tighter text-white mb-6 block">
+            <Link to="/" className="text-2xl font-bold tracking-tighter text-white mb-6 block">
               Rankior<span className="text-indigo-500">.</span>
-            </span>
+            </Link>
             <p className="text-slate-500 max-w-xs">
               Expertos en implementación de Odoo ERP para el mercado mexicano. Transformamos empresas con tecnología de clase mundial.
             </p>
@@ -19,10 +20,10 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-bold mb-6">Enlaces</h4>
             <ul className="space-y-4 text-slate-500 text-sm">
-              <li><a href="#" className="hover:text-white transition-colors">Oferta</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Cómo funciona</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Precios</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
+              <li><a href="/#oferta" className="hover:text-white transition-colors">Oferta</a></li>
+              <li><Link to="/casos" className="hover:text-white transition-colors">Casos de Éxito</Link></li>
+              <li><a href="/#precios" className="hover:text-white transition-colors">Precios</a></li>
+              <li><Link to="/blog" className="hover:text-white transition-colors">Blog & Recursos</Link></li>
             </ul>
           </div>
 
@@ -31,7 +32,7 @@ const Footer = () => {
             <ul className="space-y-4 text-slate-500 text-sm">
               <li><a href="#" className="hover:text-white transition-colors">Privacidad</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Términos</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
+              <li><a href="/#contacto" className="hover:text-white transition-colors">Contacto</a></li>
             </ul>
           </div>
         </div>
@@ -41,10 +42,9 @@ const Footer = () => {
             © {new Date().getFullYear()} Rankior. Todos los derechos reservados.
           </p>
           <div className="flex gap-6">
-            {/* Social Icons Placeholder */}
-            <div className="w-5 h-5 bg-slate-800 rounded-full" />
-            <div className="w-5 h-5 bg-slate-800 rounded-full" />
-            <div className="w-5 h-5 bg-slate-800 rounded-full" />
+            <div className="w-5 h-5 bg-slate-800 rounded-full hover:bg-indigo-500 transition-colors cursor-pointer" />
+            <div className="w-5 h-5 bg-slate-800 rounded-full hover:bg-indigo-500 transition-colors cursor-pointer" />
+            <div className="w-5 h-5 bg-slate-800 rounded-full hover:bg-indigo-500 transition-colors cursor-pointer" />
           </div>
         </div>
       </div>

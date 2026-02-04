@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, TrendingUp, Clock, BarChart } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const stories = [
   {
@@ -40,9 +41,12 @@ const SuccessStories = () => {
               Resultados reales para empresas reales en el mercado mexicano.
             </p>
           </div>
-          <button className="group flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors">
+          <Link 
+            to="/casos" 
+            className="group flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors"
+          >
             Ver todos los casos <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </button>
+          </Link>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
