@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,45 +9,9 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import { ArrowLeft, TrendingUp, Clock, CheckCircle2, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import DiagnosticDialog from '@/components/DiagnosticDialog';
-import { getCaseStudyById } from '@/lib/cms';
 
 const CaseStudyPost = () => {
   const { id } = useParams();
-  const [story, setStory] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchStory = async () => {
-      if (id) {
-        const data = await getCaseStudyById(id);
-        if (data) {
-          setStory(data);
-        } else {
-          // Fallback for demo purposes if CMS is not connected
-          setStory({
-            fields: {
-              companyName: "Distribuidora Norte",
-              industry: "Logística & Distribución",
-              challenge: "Distribuidora Norte operaba con múltiples almacenes y un sistema de facturación desconectado. Esto generaba errores constantes en las existencias, ventas de productos agotados y una carga administrativa masiva para conciliar las facturas con el SAT al final de cada mes.",
-              solution: "Implementamos Odoo Enterprise con los módulos de Inventario, Ventas y Contabilidad (Localización Mexicana). Configuramos rutas de logística avanzadas para el traspaso entre sucursales y automatizamos el timbrado de facturas en el momento de la validación del pedido.",
-              efficiencyMetric: "+45%",
-              timeSavedMetric: "15h/sem",
-              errorReductionMetric: "0%",
-              featuredImage: { fields: { file: { url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200" } } }
-            }
-          });
-        }
-      }
-      setLoading(false);
-    };
-    fetchStory();
-  }, [id]);
-
-  if (loading) return <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">Cargando...</div>;
-  if (!story) return <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">Caso no encontrado</div>;
-
-  const { companyName, industry, challenge, solution, efficiencyMetric, timeSavedMetric, errorReductionMetric, featuredImage } = story.fields;
-  const imageUrl = featuredImage?.fields?.file?.url || "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200";
 
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200">
@@ -64,30 +28,33 @@ const CaseStudyPost = () => {
             <div className="lg:col-span-2 space-y-12">
               <header className="space-y-6">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider">
-                  {industry}
+                  Logística & Distribución
                 </div>
                 <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-                  {companyName}: Transformación Digital con Odoo
+                  Distribuidora Norte: Sincronización de inventario en tiempo real
                 </h1>
+                <p className="text-xl text-slate-400 leading-relaxed">
+                  Cómo una de las distribuidoras más grandes del norte del país eliminó el desfase de inventario y automatizó su facturación CFDI 4.0 con Odoo.
+                </p>
               </header>
 
               <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
                 <img 
-                  src={imageUrl} 
-                  alt={companyName} 
+                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Distribuidora Norte Case Study" 
                   className="w-full h-full object-cover"
                 />
               </div>
 
               <div className="prose prose-invert prose-indigo max-w-none">
                 <h2 className="text-2xl font-bold text-white">El Reto</h2>
-                <p className="text-slate-400 leading-relaxed whitespace-pre-wrap">
-                  {challenge}
+                <p className="text-slate-400 leading-relaxed">
+                  Distribuidora Norte operaba con múltiples almacenes y un sistema de facturación desconectado. Esto generaba errores constantes en las existencias, ventas de productos agotados y una carga administrativa masiva para conciliar las facturas con el SAT al final de cada mes.
                 </p>
                 
                 <h2 className="text-2xl font-bold text-white mt-12">La Solución</h2>
-                <p className="text-slate-400 leading-relaxed whitespace-pre-wrap">
-                  {solution}
+                <p className="text-slate-400 leading-relaxed">
+                  Implementamos Odoo Enterprise con los módulos de Inventario, Ventas y Contabilidad (Localización Mexicana). Configuramos rutas de logística avanzadas para el traspaso entre sucursales y automatizamos el timbrado de facturas en el momento de la validación del pedido.
                 </p>
 
                 <div className="grid sm:grid-cols-2 gap-6 my-12">
@@ -96,14 +63,14 @@ const CaseStudyPost = () => {
                       <CheckCircle2 className="text-emerald-500" size={20} /> 
                       Implementación Ágil
                     </h4>
-                    <p className="text-sm text-slate-400">Configuración completa de la localización mexicana en tiempo récord.</p>
+                    <p className="text-sm text-slate-400">Configuración completa de la localización mexicana en menos de 3 semanas.</p>
                   </div>
                   <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
                     <h4 className="text-white font-bold mb-4 flex items-center gap-2">
                       <CheckCircle2 className="text-emerald-500" size={20} /> 
                       Capacitación
                     </h4>
-                    <p className="text-sm text-slate-400">Entrenamiento intensivo a usuarios clave en todas las áreas operativas.</p>
+                    <p className="text-sm text-slate-400">Entrenamiento intensivo a 15 usuarios clave en todas las áreas operativas.</p>
                   </div>
                 </div>
               </div>
@@ -118,7 +85,7 @@ const CaseStudyPost = () => {
                       <TrendingUp className="text-indigo-400" size={24} />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-white">{efficiencyMetric || "+45%"}</p>
+                      <p className="text-2xl font-bold text-white">+45%</p>
                       <p className="text-xs text-slate-500 uppercase tracking-widest">Eficiencia Operativa</p>
                     </div>
                   </div>
@@ -128,7 +95,7 @@ const CaseStudyPost = () => {
                       <Clock className="text-indigo-400" size={24} />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-white">{timeSavedMetric || "15h/sem"}</p>
+                      <p className="text-2xl font-bold text-white">15h/sem</p>
                       <p className="text-xs text-slate-500 uppercase tracking-widest">Tiempo Ahorrado</p>
                     </div>
                   </div>
@@ -138,7 +105,7 @@ const CaseStudyPost = () => {
                       <BarChart3 className="text-indigo-400" size={24} />
                     </div>
                     <div>
-                      <p className="text-2xl font-bold text-white">{errorReductionMetric || "0%"}</p>
+                      <p className="text-2xl font-bold text-white">0%</p>
                       <p className="text-xs text-slate-500 uppercase tracking-widest">Errores de Inventario</p>
                     </div>
                   </div>
