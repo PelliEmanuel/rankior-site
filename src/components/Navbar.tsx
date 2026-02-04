@@ -15,10 +15,11 @@ import DiagnosticDialog from './DiagnosticDialog';
 
 const Navbar = () => {
   const navLinks = [
-    { name: "Servicios", href: "/servicios", isExternal: false },
-    { name: "Casos", href: "/casos", isExternal: false },
-    { name: "Blog", href: "/blog", isExternal: false },
-    { name: "Contacto", href: "/contacto", isExternal: false },
+    { name: "Servicios", href: "/servicios" },
+    { name: "Casos", href: "/casos" },
+    { name: "Nosotros", href: "/nosotros" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contacto", href: "/contacto" },
   ];
 
   return (
