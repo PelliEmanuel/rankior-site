@@ -3,6 +3,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import LogoCloud from '@/components/LogoCloud';
 import Stats from '@/components/Stats';
 import Features from '@/components/Features';
 import Modules from '@/components/Modules';
@@ -20,6 +21,7 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <LogoCloud />
         <Stats />
         <Features />
         <Modules />

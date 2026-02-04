@@ -1,55 +1,71 @@
 "use client";
 
 import React from 'react';
+import { motion } from 'framer-motion';
+import { Search, Settings, Rocket, TrendingUp } from 'lucide-react';
 
 const steps = [
   {
-    number: "01",
+    icon: Search,
     title: "Diagnóstico",
-    description: "Analizamos tus procesos actuales y detectamos cuellos de botella."
+    description: "Analizamos tus procesos actuales y detectamos cuellos de botella operativos.",
+    color: "bg-blue-500"
   },
   {
-    number: "02",
+    icon: Settings,
     title: "Implementación",
-    description: "Configuramos Odoo con las mejores prácticas para el mercado mexicano."
+    description: "Configuramos Odoo con las mejores prácticas para el mercado mexicano y CFDI 4.0.",
+    color: "bg-indigo-500"
   },
   {
-    number: "03",
+    icon: Rocket,
     title: "Go-live",
-    description: "Migración de datos y capacitación intensiva a tu equipo."
+    description: "Migración de datos segura y capacitación intensiva a todo tu equipo de trabajo.",
+    color: "bg-purple-500"
   },
   {
-    number: "04",
+    icon: TrendingUp,
     title: "Optimización",
-    description: "Acompañamiento continuo para escalar tu operación."
+    description: "Acompañamiento continuo y soporte técnico para escalar tu operación sin límites.",
+    color: "bg-cyan-500"
   }
 ];
 
 const Process = () => {
   return (
-    <section id="proceso" className="py-24 bg-slate-950/50">
+    <section id="proceso" className="py-24 relative">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">Cómo lo logramos</h2>
-          <p className="text-slate-400">Un camino claro hacia la transformación digital.</p>
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Nuestra Metodología</h2>
+          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+            Un camino estructurado y probado para llevar tu empresa al siguiente nivel digital.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-4 gap-8 relative">
+          {/* Connecting Line */}
+          <div className="hidden md:block absolute top-12 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-white/10 to-transparent -z-10" />
+          
           {steps.map((step, i) => (
-            <div key={i} className="relative group">
-              <div className="text-6xl font-black text-white/5 absolute -top-6 -left-2 group-hover:text-indigo-500/10 transition-colors">
-                {step.number}
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2 }}
+              className="relative group text-center"
+            >
+              <div className={`w-24 h-24 rounded-3xl ${step.color} mx-auto flex items-center justify-center mb-8 shadow-2xl shadow-indigo-500/20 group-hover:scale-110 transition-transform duration-300`}>
+                <step.icon className="text-white" size={40} />
               </div>
-              <div className="relative pt-4">
-                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+              <div className="space-y-4">
+                <span className="text-indigo-500 font-bold text-sm uppercase tracking-widest">Paso 0{i + 1}</span>
+                <h3 className="text-2xl font-bold text-white">{step.title}</h3>
                 <p className="text-slate-400 text-sm leading-relaxed">
                   {step.description}
                 </p>
               </div>
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[1px] bg-gradient-to-r from-indigo-500/50 to-transparent" />
-              )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
