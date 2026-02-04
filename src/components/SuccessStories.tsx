@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 const stories = [
   {
+    id: "distribuidora-norte",
     company: "Distribuidora Norte",
     industry: "Logística y Distribución",
     challenge: "Inventarios desfasados y errores constantes en facturación CFDI.",
@@ -18,6 +19,7 @@ const stories = [
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
   },
   {
+    id: "retail-mx",
     company: "Retail MX",
     industry: "Comercio Electrónico",
     challenge: "Falta de integración entre Shopify y su contabilidad local.",
@@ -58,7 +60,7 @@ const SuccessStories = () => {
               viewport={{ once: true }}
               className="group relative overflow-hidden rounded-3xl bg-white/[0.02] border border-white/10"
             >
-              <div className="grid md:grid-cols-2">
+              <Link to={`/casos/${story.id}`} className="grid md:grid-cols-2">
                 <div className="relative h-64 md:h-auto overflow-hidden">
                   <img 
                     src={story.image} 
@@ -87,7 +89,7 @@ const SuccessStories = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </Link>
             </motion.div>
           ))}
         </div>
