@@ -15,6 +15,7 @@ import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import TrustBadges from '@/components/TrustBadges';
 import ResourceCenter from '@/components/ResourceCenter';
+import Newsletter from '@/components/Newsletter';
 import FAQ from '@/components/FAQ';
 import ContactSection from '@/components/ContactSection';
 import FinalCTA from '@/components/FinalCTA';
@@ -42,6 +43,7 @@ const Index = () => {
         <ScrollReveal><Testimonials /></ScrollReveal>
         <ScrollReveal><TrustBadges /></ScrollReveal>
         <ScrollReveal><ResourceCenter /></ScrollReveal>
+        <ScrollReveal><Newsletter /></ScrollReveal>
         <ScrollReveal><FAQ /></ScrollReveal>
         <ScrollReveal><ContactSection /></ScrollReveal>
         <ScrollReveal><FinalCTA /></ScrollReveal>
