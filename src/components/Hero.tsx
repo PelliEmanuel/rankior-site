@@ -26,7 +26,7 @@ const Hero = () => {
             </div>
             
             <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
-              Tu socio estratégico para <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">empresas</span>
+              Tu socio estratégico para <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">crecer</span>
             </h1>
             
             <p className="text-xl text-slate-400 max-w-xl leading-relaxed">
