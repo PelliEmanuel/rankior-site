@@ -16,10 +16,9 @@ import DiagnosticDialog from './DiagnosticDialog';
 const Navbar = () => {
   const navLinks = [
     { name: "Servicios", href: "/servicios", isExternal: false },
-    { name: "Oferta", href: "/#oferta", isExternal: false },
-    { name: "Cómo funciona", href: "/#proceso", isExternal: false },
-    { name: "Precios", href: "/#precios", isExternal: false },
-    { name: "FAQ", href: "/#faq", isExternal: false },
+    { name: "Casos", href: "/casos", isExternal: false },
+    { name: "Blog", href: "/blog", isExternal: false },
+    { name: "Contacto", href: "/contacto", isExternal: false },
   ];
 
   return (
@@ -34,23 +33,13 @@ const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            link.href.startsWith('/#') ? (
-              <a 
-                key={link.name}
-                href={link.href} 
-                className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-              >
-                {link.name}
-              </a>
-            ) : (
-              <Link 
-                key={link.name}
-                to={link.href} 
-                className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
-              >
-                {link.name}
-              </Link>
-            )
+            <Link 
+              key={link.name}
+              to={link.href} 
+              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+            >
+              {link.name}
+            </Link>
           ))}
         </div>
 
@@ -75,23 +64,13 @@ const Navbar = () => {
                 </SheetHeader>
                 <div className="flex flex-col gap-6 mt-10">
                   {navLinks.map((link) => (
-                    link.href.startsWith('/#') ? (
-                      <a 
-                        key={link.name}
-                        href={link.href} 
-                        className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
-                      >
-                        {link.name}
-                      </a>
-                    ) : (
-                      <Link 
-                        key={link.name}
-                        to={link.href} 
-                        className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
-                      >
-                        {link.name}
-                      </Link>
-                    )
+                    <Link 
+                      key={link.name}
+                      to={link.href} 
+                      className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
+                    >
+                      {link.name}
+                    </Link>
                   ))}
                   <DiagnosticDialog>
                     <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-full py-6 text-lg">
