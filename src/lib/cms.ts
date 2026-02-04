@@ -22,11 +22,11 @@ export const getBlogPosts = async () => {
   }
 };
 
-export const getBlogPostById = async (id: string) => {
+export const getBlogPostById = async (slug: string) => {
   try {
     const response = await client.getEntries({
       content_type: 'blogPost',
-      'fields.slug': id,
+      'fields.slug': slug,
       limit: 1,
     });
     return response.items[0];
@@ -46,5 +46,19 @@ export const getCaseStudies = async () => {
   } catch (error) {
     console.error('Error fetching case studies:', error);
     return [];
+  }
+};
+
+export const getCaseStudyById = async (slug: string) => {
+  try {
+    const response = await client.getEntries({
+      content_type: 'caseStudy',
+      'fields.slug': slug,
+      limit: 1,
+    });
+    return response.items[0];
+  } catch (error) {
+    console.error('Error fetching case study:', error);
+    return null;
   }
 };

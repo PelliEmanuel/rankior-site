@@ -5,7 +5,27 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, TrendingUp, Clock, BarChart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const stories = [
+interface Metric {
+  label: string;
+  value: string;
+  icon: any;
+}
+
+interface Story {
+  id: string;
+  company: string;
+  industry: string;
+  challenge: string;
+  result: string;
+  metrics: Metric[];
+  image: string;
+}
+
+interface SuccessStoriesProps {
+  stories?: Story[];
+}
+
+const defaultStories: Story[] = [
   {
     id: "distribuidora-norte",
     company: "Distribuidora Norte",
@@ -32,7 +52,7 @@ const stories = [
   }
 ];
 
-const SuccessStories = () => {
+const SuccessStories = ({ stories = defaultStories }: SuccessStoriesProps) => {
   return (
     <section id="casos" className="py-24 relative">
       <div className="container mx-auto px-4">

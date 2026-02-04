@@ -1,14 +1,41 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import SuccessStories from '@/components/SuccessStories';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
+import { getCaseStudies } from '@/lib/cms';
+import { TrendingUp, Clock, BarChart } from 'lucide-react';
 
 const CaseStudies = () => {
+  const [stories, setStories] = useState<any[] | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchStories = async () => {
+      const cmsStories = await getCaseStudies();
+      if (cmsStories && cmsStories.length > 0) {
+        const mappedStories = cmsStories.map((item: any) => ({
+          id: item.fields.slug,
+          company: item.fields.companyName,
+          industry: item.fields.industry,
+          challenge: item.fields.challenge,
+          result: item.fields.result,
+          image: item.fields.featuredImage?.fields?.file?.url || "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+          metrics: [
+            { label: "Eficiencia", value: item.fields.efficiencyMetric || "+45%", icon: TrendingUp },
+            { label: "Tiempo Ahorrado", value: item.fields.timeSavedMetric || "15h/sem", icon: Clock }
+          ]
+        }));
+        setStories(mappedStories);
+      }
+    };
+
+    fetchStories();
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200">
       <BackgroundElements />
@@ -27,7 +54,7 @@ const CaseStudies = () => {
           </ScrollReveal>
         </div>
         
-        <SuccessStories />
+        <SuccessStories stories={stories} />
         
         <section className="py-24 border-t border-white/5">
           <div className="container mx-auto px-4 text-center">
