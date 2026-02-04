@@ -10,7 +10,6 @@ import MexicanLocalization from '@/components/MexicanLocalization';
 import Comparison from '@/components/Comparison';
 import Modules from '@/components/Modules';
 import SuccessStories from '@/components/SuccessStories';
-import ROICalculator from '@/components/ROICalculator';
 import Process from '@/components/Process';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
@@ -38,7 +37,6 @@ const Index = () => {
         <ScrollReveal><Comparison /></ScrollReveal>
         <ScrollReveal><Modules /></ScrollReveal>
         <ScrollReveal><SuccessStories /></ScrollReveal>
-        <ScrollReveal><ROICalculator /></ScrollReveal>
         <ScrollReveal><Process /></ScrollReveal>
         <ScrollReveal><Pricing /></ScrollReveal>
         <ScrollReveal><Testimonials /></ScrollReveal>
