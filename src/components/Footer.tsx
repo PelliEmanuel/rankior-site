@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Linkedin, Twitter, Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -42,10 +43,16 @@ const Footer = () => {
           <p className="text-slate-600 text-sm">
             © {new Date().getFullYear()} Rankior. Todos los derechos reservados.
           </p>
-          <div className="flex gap-6">
-            <div className="w-5 h-5 bg-slate-800 rounded-full hover:bg-indigo-500 transition-colors cursor-pointer" />
-            <div className="w-5 h-5 bg-slate-800 rounded-full hover:bg-indigo-500 transition-colors cursor-pointer" />
-            <div className="w-5 h-5 bg-slate-800 rounded-full hover:bg-indigo-500 transition-colors cursor-pointer" />
+          <div className="flex gap-5">
+            <a href="#" className="text-slate-500 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
+              <Linkedin size={18} />
+            </a>
+            <a href="#" className="text-slate-500 hover:text-indigo-400 transition-colors" aria-label="Twitter">
+              <Twitter size={18} />
+            </a>
+            <a href="#" className="text-slate-500 hover:text-indigo-400 transition-colors" aria-label="Instagram">
+              <Instagram size={18} />
+            </a>
           </div>
         </div>
       </div>
