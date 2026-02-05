@@ -10,7 +10,7 @@ const partners = [
   },
   { 
     name: "SAT Autorizado", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo_del_SAT.svg/1200px-Logo_del_SAT.svg.png" 
+    logo: "https://www.sat.gob.mx/PublishingImages/SAT_logo_2017.png" 
   },
   { 
     name: "Shopify Expert", 
@@ -33,7 +33,7 @@ const Partners = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="h-12 md:h-16 grayscale invert opacity-60 hover:grayscale-0 hover:invert-0 hover:opacity-100 transition-all duration-500"
+              className="h-12 md:h-16 grayscale invert brightness-200 opacity-60 hover:grayscale-0 hover:invert-0 hover:brightness-100 hover:opacity-100 transition-all duration-500"
             >
               <img 
                 src={partner.logo} 
