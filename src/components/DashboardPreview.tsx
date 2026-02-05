@@ -95,7 +95,7 @@ const DashboardPreview = () => {
               {/* Main Chart Area */}
               <div className="md:col-span-2 p-8 rounded-2xl bg-white/5 border border-white/10 min-h-[300px] flex flex-col">
                 <div className="flex justify-between items-center mb-8">
-                  <h4 className="text-white font-bold">Rendimiento de Ventas</h4>
+                  <h3 className="text-white font-bold">Rendimiento de Ventas</h3>
                   <div className="flex gap-2">
                     <div className="h-2 w-8 bg-indigo-500 rounded-full" />
                     <div className="h-2 w-8 bg-white/10 rounded-full" />
@@ -116,7 +116,7 @@ const DashboardPreview = () => {
 
               {/* Side List */}
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-6">
-                <h4 className="text-white font-bold text-sm">Actividad Reciente</h4>
+                <h3 className="text-white font-bold text-sm">Actividad Reciente</h3>
                 <div className="space-y-4">
                   {[
                     { user: "Carlos R.", action: "Factura timbrada", time: "2m ago" },

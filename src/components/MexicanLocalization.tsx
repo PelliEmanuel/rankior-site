@@ -50,7 +50,7 @@ const MexicanLocalization = () => {
                     <f.icon className="text-indigo-500" size={24} />
                   </div>
                   <div>
-                    <h4 className="text-white font-bold mb-1">{f.title}</h4>
+                    <h3 className="text-white font-bold mb-1">{f.title}</h3>
                     <p className="text-slate-500 text-sm leading-relaxed">{f.description}</p>
                   </div>
                 </div>

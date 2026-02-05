@@ -48,7 +48,7 @@ const Testimonials = () => {
               <div className="flex items-center gap-4">
                 <img src={t.avatar} alt={t.name} className="w-12 h-12 rounded-full bg-indigo-500/20" />
                 <div>
-                  <h4 className="text-white font-bold">{t.name}</h4>
+                  <h3 className="text-white font-bold">{t.name}</h3>
                   <p className="text-slate-500 text-sm">{t.role}</p>
                 </div>
               </div>

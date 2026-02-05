@@ -55,7 +55,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white">
+                <Button variant="ghost" size="icon" className="text-white" aria-label="Abrir menú de navegación">
                   <Menu size={24} />
                 </Button>
               </SheetTrigger>

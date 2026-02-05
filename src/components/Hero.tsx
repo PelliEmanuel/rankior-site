@@ -48,10 +48,10 @@ const Hero = () => {
           <div className="relative">
             <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-3xl blur opacity-20"></div>
             <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 lg:p-10 shadow-2xl">
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
                 <Calendar className="text-indigo-400" />
                 Oferta rápida — Diagnóstico
-              </h3>
+              </h2>
               
               <ul className="space-y-6 mb-8">
                 {[

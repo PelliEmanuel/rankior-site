@@ -13,14 +13,14 @@ const Footer = () => {
             <Link to="/" className="text-2xl font-bold tracking-tighter text-white mb-6 block">
               Rankior<span className="text-indigo-500">.</span>
             </Link>
-            <p className="text-slate-500 max-w-xs">
+            <p className="text-slate-400 max-w-xs">
               Expertos en implementación de Odoo ERP para el mercado mexicano. Transformamos empresas con tecnología de clase mundial.
             </p>
           </div>
           
           <div>
-            <h4 className="text-white font-bold mb-6">Compañía</h4>
-            <ul className="space-y-4 text-slate-500 text-sm">
+            <h3 className="text-white font-bold mb-6">Compañía</h3>
+            <ul className="space-y-4 text-slate-400 text-sm">
               <li><Link to="/nosotros" className="hover:text-white transition-colors">Nosotros</Link></li>
               <li><Link to="/servicios" className="hover:text-white transition-colors">Servicios</Link></li>
               <li><Link to="/casos" className="hover:text-white transition-colors">Casos de Éxito</Link></li>
@@ -30,8 +30,8 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-bold mb-6">Legal</h4>
-            <ul className="space-y-4 text-slate-500 text-sm">
+            <h3 className="text-white font-bold mb-6">Legal</h3>
+            <ul className="space-y-4 text-slate-400 text-sm">
               <li><a href="#" className="hover:text-white transition-colors">Privacidad</a></li>
               <li><a href="#" className="hover:text-white transition-colors">Términos</a></li>
               <li><Link to="/contacto" className="hover:text-white transition-colors">Contacto</Link></li>
@@ -40,17 +40,17 @@ const Footer = () => {
         </div>
         
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-slate-600 text-sm">
+          <p className="text-slate-400 text-sm">
             © {new Date().getFullYear()} Rankior. Todos los derechos reservados.
           </p>
           <div className="flex gap-5">
-            <a href="#" className="text-slate-500 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
+            <a href="#" className="text-slate-400 hover:text-indigo-400 transition-colors" aria-label="LinkedIn">
               <Linkedin size={18} />
             </a>
-            <a href="#" className="text-slate-500 hover:text-indigo-400 transition-colors" aria-label="Twitter">
+            <a href="#" className="text-slate-400 hover:text-indigo-400 transition-colors" aria-label="Twitter">
               <Twitter size={18} />
             </a>
-            <a href="#" className="text-slate-500 hover:text-indigo-400 transition-colors" aria-label="Instagram">
+            <a href="#" className="text-slate-400 hover:text-indigo-400 transition-colors" aria-label="Instagram">
               <Instagram size={18} />
             </a>
           </div>
