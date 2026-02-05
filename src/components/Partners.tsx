@@ -9,10 +9,6 @@ const partners = [
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png" 
   },
   { 
-    name: "SAT Autorizado", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo_del_SAT.svg/1200px-Logo_del_SAT.svg.png" 
-  },
-  { 
     name: "Shopify Expert", 
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/1200px-Shopify_logo_2018.svg.png" 
   }
