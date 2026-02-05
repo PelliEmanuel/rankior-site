@@ -6,6 +6,7 @@ import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
+import Partners from '@/components/Partners';
 import { Shield, Target, Zap, Award, Users2, Building2, Linkedin } from 'lucide-react';
 
 const values = [
@@ -67,8 +68,10 @@ const About = () => {
             </ScrollReveal>
           </div>
 
+          <Partners />
+
           {/* Stats/Impact */}
-          <div className="grid md:grid-cols-3 gap-8 mb-32">
+          <div className="grid md:grid-cols-3 gap-8 my-32">
             {[
               { label: "Años de Experiencia", value: "8+", icon: Award },
               { label: "Proyectos Exitosos", value: "150+", icon: Building2 },
@@ -140,31 +143,6 @@ const About = () => {
                   </div>
                 </ScrollReveal>
               ))}
-            </div>
-          </section>
-
-          {/* Why Rankior? */}
-          <section className="p-12 rounded-[3rem] bg-indigo-600/10 border border-indigo-500/20 relative overflow-hidden">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-4xl font-bold text-white mb-6">¿Por qué elegir Rankior?</h2>
-                <div className="space-y-6">
-                  <p className="text-slate-300 text-lg">
-                    Entendemos los retos específicos del mercado mexicano: desde la complejidad del CFDI 4.0 hasta la necesidad de una logística eficiente en un territorio vasto.
-                  </p>
-                  <p className="text-slate-300 text-lg">
-                    No somos solo proveedores de software; somos tus socios estratégicos en la transformación digital.
-                  </p>
-                </div>
-              </div>
-              <div className="relative aspect-square max-w-md mx-auto lg:ml-auto">
-                <div className="absolute inset-0 bg-indigo-500/20 blur-[100px] rounded-full animate-pulse" />
-                <img 
-                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800" 
-                  alt="Team working" 
-                  className="relative z-10 rounded-3xl object-cover w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
-                />
-              </div>
             </div>
           </section>
         </div>
