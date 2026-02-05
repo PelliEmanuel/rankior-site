@@ -18,7 +18,7 @@ const Partners = () => {
   return (
     <section className="py-20 border-y border-white/5 bg-white/[0.01]">
       <div className="container mx-auto px-4">
-        <p className="text-center text-slate-500 text-xs font-bold uppercase tracking-[0.2em] mb-12">
+        <p className="text-center text-slate-400 text-xs font-bold uppercase tracking-[0.2em] mb-12">
           Certificaciones y Alianzas Estratégicas
         </p>
         <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24">
