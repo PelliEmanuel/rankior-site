@@ -8,6 +8,7 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
 import ServiceCard from '@/components/ServiceCard';
+import SolutionFinder from '@/components/SolutionFinder';
 import { 
   LayoutDashboard, 
   Users, 
@@ -89,6 +90,16 @@ const Services = () => {
             ))}
           </div>
 
+          {/* Solution Finder Section */}
+          <section className="mb-32 py-24 bg-indigo-950/20 rounded-[3rem] border border-white/5">
+            <SectionHeader 
+              subtitle="Descubrimiento"
+              title="¿No sabes por dónde empezar?"
+              description="Responde dos preguntas y te recomendaremos el paquete ideal para tu situación actual."
+            />
+            <SolutionFinder />
+          </section>
+
           {/* Service Process Section */}
           <section className="mb-32">
             <SectionHeader 
@@ -117,7 +128,7 @@ const Services = () => {
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full -translate-y-1/2 translate-x-1/2" />
             <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 className="text-4xl font-bold text-white mb-6">¿No sabes por dónde empezar?</h2>
+                <h2 className="text-4xl font-bold text-white mb-6">¿Listo para dar el salto?</h2>
                 <p className="text-indigo-100 text-lg mb-8">
                   Nuestros consultores expertos te ayudan a priorizar los módulos que generarán el mayor impacto inmediato en tu rentabilidad.
                 </p>

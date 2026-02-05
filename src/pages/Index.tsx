@@ -23,6 +23,8 @@ import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
+import DashboardPreview from '@/components/DashboardPreview';
+import Partners from '@/components/Partners';
 
 const Index = () => {
   return (
@@ -33,6 +35,7 @@ const Index = () => {
         <Hero />
         <ScrollReveal><LogoCloud /></ScrollReveal>
         <ScrollReveal><Stats /></ScrollReveal>
+        <ScrollReveal><DashboardPreview /></ScrollReveal>
         <ScrollReveal><Features /></ScrollReveal>
         <ScrollReveal><MexicanLocalization /></ScrollReveal>
         <ScrollReveal><Comparison /></ScrollReveal>
@@ -41,6 +44,7 @@ const Index = () => {
         <ScrollReveal><Process /></ScrollReveal>
         <ScrollReveal><Pricing /></ScrollReveal>
         <ScrollReveal><Testimonials /></ScrollReveal>
+        <ScrollReveal><Partners /></ScrollReveal>
         <ScrollReveal><TrustBadges /></ScrollReveal>
         <ScrollReveal><ResourceCenter /></ScrollReveal>
         <ScrollReveal><Newsletter /></ScrollReveal>
