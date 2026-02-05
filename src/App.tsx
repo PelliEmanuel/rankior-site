@@ -13,6 +13,7 @@ import About from "./pages/About";
 import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import ThankYou from "./pages/ThankYou";
+import Comparison from "./pages/Comparison";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/vacantes" element={<Careers />} />
           <Route path="/contacto" element={<Contact />} />
           <Route path="/gracias" element={<ThankYou />} />
+          <Route path="/comparativa" element={<Comparison />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

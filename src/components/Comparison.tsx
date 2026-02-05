@@ -1,7 +1,9 @@
 "use client";
 
 import React from 'react';
-import { Check, X } from 'lucide-react';
+import { Check, X, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
 const Comparison = () => {
   const points = [
@@ -45,7 +47,7 @@ const Comparison = () => {
           <p className="text-slate-400 text-lg">Compara la eficiencia de un sistema moderno frente a los métodos tradicionales.</p>
         </div>
 
-        <div className="max-w-4xl mx-auto overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm">
+        <div className="max-w-4xl mx-auto overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] backdrop-blur-sm mb-12">
           <div className="grid grid-cols-3 bg-white/5 p-6 border-b border-white/10">
             <div className="text-slate-400 font-semibold">Característica</div>
             <div className="text-slate-400 font-semibold text-center">Sistemas Tradicionales</div>
@@ -67,6 +69,14 @@ const Comparison = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="text-center">
+          <Button asChild variant="link" className="text-indigo-400 hover:text-indigo-300 font-bold text-lg gap-2">
+            <Link to="/comparativa">
+              Ver comparativa técnica completa <ArrowRight size={20} />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
