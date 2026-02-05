@@ -9,7 +9,6 @@ import ScrollReveal from '@/components/ScrollReveal';
 import SectionHeader from '@/components/SectionHeader';
 import ServiceCard from '@/components/ServiceCard';
 import SolutionFinder from '@/components/SolutionFinder';
-import ROICalculator from '@/components/ROICalculator';
 import { 
   LayoutDashboard, 
   Users, 
@@ -90,16 +89,6 @@ const Services = () => {
               />
             ))}
           </div>
-
-          {/* ROI Calculator Section */}
-          <section className="mb-32 py-24 border-y border-white/5">
-            <SectionHeader 
-              subtitle="Rentabilidad"
-              title="Calcula tu Retorno de Inversión"
-              description="Descubre cuánto podrías ahorrar al automatizar tus procesos con Odoo."
-            />
-            <ROICalculator />
-          </section>
 
           {/* Solution Finder Section */}
           <section className="mb-32 py-24 bg-indigo-950/20 rounded-[3rem] border border-white/5">
