@@ -5,10 +5,6 @@ import { motion } from 'framer-motion';
 
 const partners = [
   { 
-    name: "Odoo Gold Partner", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Odoo-logo.svg/1200px-Odoo-logo.svg.png" 
-  },
-  { 
     name: "AWS Certified", 
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png" 
   },
