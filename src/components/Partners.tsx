@@ -6,19 +6,19 @@ import { motion } from 'framer-motion';
 const partners = [
   { 
     name: "Odoo Gold Partner", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Odoo-logo.svg/512px-Odoo-logo.svg.png" 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Odoo-logo.svg/1200px-Odoo-logo.svg.png" 
   },
   { 
     name: "AWS Certified", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/512px-Amazon_Web_Services_Logo.svg.png" 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png" 
   },
   { 
     name: "SAT Autorizado", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo_del_SAT.svg/512px-Logo_del_SAT.svg.png" 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Logo_del_SAT.svg/1200px-Logo_del_SAT.svg.png" 
   },
   { 
     name: "Shopify Expert", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/512px-Shopify_logo_2018.svg.png" 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopify_logo_2018.svg/1200px-Shopify_logo_2018.svg.png" 
   }
 ];
 
@@ -33,16 +33,16 @@ const Partners = () => {
           {partners.map((partner, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="h-10 md:h-12 flex items-center justify-center"
+              className="h-12 md:h-16 grayscale invert opacity-60 hover:grayscale-0 hover:invert-0 hover:opacity-100 transition-all duration-500"
             >
               <img 
                 src={partner.logo} 
                 alt={partner.name} 
-                className="h-full w-auto object-contain brightness-0 invert opacity-50 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-500 cursor-default"
+                className="h-full w-auto object-contain"
               />
             </motion.div>
           ))}
