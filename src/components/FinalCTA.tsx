@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
+import DiagnosticDialog from './DiagnosticDialog';
 
 const FinalCTA = () => {
   return (
@@ -17,9 +18,11 @@ const FinalCTA = () => {
           <p className="text-xl text-slate-400 mb-10">
             No pierdas más tiempo con sistemas desconectados. Toma el control de tu empresa hoy mismo.
           </p>
-          <Button size="lg" className="bg-white text-indigo-950 hover:bg-slate-100 h-16 px-10 rounded-full text-xl font-bold shadow-2xl shadow-white/10">
-            Agendar diagnóstico ahora
-          </Button>
+          <DiagnosticDialog>
+            <Button size="lg" className="bg-white text-indigo-950 hover:bg-slate-100 h-16 px-10 rounded-full text-xl font-bold shadow-2xl shadow-white/10">
+              Agendar diagnóstico ahora
+            </Button>
+          </DiagnosticDialog>
         </div>
       </div>
     </section>
