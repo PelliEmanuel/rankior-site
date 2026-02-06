@@ -8,6 +8,7 @@ import ResourceCenter from '@/components/ResourceCenter';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getBlogPosts } from '@/lib/cms';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const categories = ['Todos', 'Fiscal', 'Operaciones', 'Tecnología', 'E-commerce'];
 
@@ -15,9 +16,11 @@ const Blog = () => {
   const [posts, setPosts] = useState<any[] | undefined>(undefined);
   const [filteredPosts, setFilteredPosts] = useState<any[] | undefined>(undefined);
   const [activeCategory, setActiveCategory] = useState('Todos');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      setLoading(true);
       const cmsPosts = await getBlogPosts();
       let mappedPosts = [];
       
@@ -32,7 +35,6 @@ const Blog = () => {
           image: item.fields.featuredImage?.fields?.file?.url || "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800"
         }));
       } else {
-        // Fallback to default posts if CMS is not configured
         mappedPosts = [
           {
             id: "cfdi-4-0-odoo-17",
@@ -65,6 +67,7 @@ const Blog = () => {
       }
       setPosts(mappedPosts);
       setFilteredPosts(mappedPosts);
+      setLoading(false);
     };
 
     fetchPosts();
@@ -116,7 +119,20 @@ const Blog = () => {
           </div>
         </div>
 
-        <ResourceCenter posts={filteredPosts} />
+        {loading ? (
+          <div className="container mx-auto px-4 grid md:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="space-y-4">
+                <Skeleton className="aspect-video w-full rounded-2xl bg-white/5" />
+                <Skeleton className="h-6 w-3/4 bg-white/5" />
+                <Skeleton className="h-4 w-full bg-white/5" />
+                <Skeleton className="h-4 w-1/2 bg-white/5" />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <ResourceCenter posts={filteredPosts} />
+        )}
       </main>
       <Footer />
       <WhatsAppButton />

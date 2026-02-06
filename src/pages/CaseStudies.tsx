@@ -9,12 +9,15 @@ import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
 import { getCaseStudies } from '@/lib/cms';
 import { TrendingUp, Clock, BarChart } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
 
 const CaseStudies = () => {
   const [stories, setStories] = useState<any[] | undefined>(undefined);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStories = async () => {
+      setLoading(true);
       const cmsStories = await getCaseStudies();
       if (cmsStories && cmsStories.length > 0) {
         const mappedStories = cmsStories.map((item: any) => ({
@@ -31,6 +34,7 @@ const CaseStudies = () => {
         }));
         setStories(mappedStories);
       }
+      setLoading(false);
     };
 
     fetchStories();
@@ -54,7 +58,22 @@ const CaseStudies = () => {
           </ScrollReveal>
         </div>
         
-        <SuccessStories stories={stories} />
+        {loading ? (
+          <div className="container mx-auto px-4 grid lg:grid-cols-2 gap-8">
+            {[1, 2].map((i) => (
+              <div key={i} className="h-[400px] w-full rounded-3xl bg-white/5 border border-white/10 p-8 flex gap-8">
+                <Skeleton className="w-1/2 h-full rounded-2xl bg-white/10" />
+                <div className="w-1/2 space-y-4">
+                  <Skeleton className="h-4 w-1/4 bg-white/10" />
+                  <Skeleton className="h-8 w-3/4 bg-white/10" />
+                  <Skeleton className="h-20 w-full bg-white/10" />
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <SuccessStories stories={stories} />
+        )}
         
         <section className="py-24 border-t border-white/5">
           <div className="container mx-auto px-4 text-center">
