@@ -1,11 +1,11 @@
-<svg width="512" height="512" viewBox="155 180 225 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="512" height="512" viewBox="150 170 280 250" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g filter="drop-shadow(0 0 1px rgba(255, 255, 255, 0.3))">
-    <path d="M160 210V400H220V300C220 260 240 240 280 240H300V185C270 185 240 200 220 230V210H160Z" 
+    <path d="M180 190H290C335 190 355 215 355 245C355 275 335 300 290 300L360 400H295L230 300V400H180V190ZM230 235V265H285C300 265 305 255 305 245C305 235 300 235 285 235H230Z" 
           fill="white" 
           stroke="#F0F0F0" 
           stroke-width="1"/>
     
-    <circle cx="340" cy="370" r="35" 
+    <circle cx="390" cy="380" r="35" 
             fill="#7B61FF" 
             stroke="#F0F0F0" 
             stroke-width="1"/>
