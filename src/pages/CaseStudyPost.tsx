@@ -19,7 +19,7 @@ const CaseStudyPost = () => {
   useEffect(() => {
     const fetchStory = async () => {
       if (id) {
-        const data = await getCaseStudyById(id);
+        const data: any = await getCaseStudyById(id);
         if (data) {
           setStory({
             title: data.fields.companyName,
