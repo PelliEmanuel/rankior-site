@@ -10,7 +10,7 @@ const integrations = [
   },
   { 
     name: "Mercado Pago", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Mercado_Pago_logo.svg/1200px-Mercado_Pago_logo.svg.png" 
+    logo: "https://http2.mlstatic.com/frontend-assets/mp-web-navigation/ui-navigation/5.30.1/mercadopago/logo__large.png" 
   },
   { 
     name: "OpenPay", 
@@ -45,14 +45,13 @@ const Partners = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="h-8 md:h-10 grayscale invert opacity-60 hover:grayscale-0 hover:invert-0 hover:opacity-100 transition-all duration-500"
+              className="h-8 md:h-10 flex items-center justify-center"
             >
               <img 
                 src={item.logo} 
                 alt={item.name} 
-                className="h-full w-auto object-contain"
+                className="h-full w-auto object-contain brightness-0 invert opacity-60 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-500"
                 onError={(e) => {
-                  // Fallback to text if image fails
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
                   const parent = target.parentElement;
