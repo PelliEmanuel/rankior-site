@@ -13,10 +13,6 @@ const integrations = [
     logo: "https://http2.mlstatic.com/frontend-assets/mp-web-navigation/ui-navigation/5.30.1/mercadopago/logo__large.png" 
   },
   { 
-    name: "OpenPay", 
-    logo: "https://www.openpay.mx/img/logos/openpay_logo.png" 
-  },
-  { 
     name: "PayPal", 
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1200px-PayPal.svg.png" 
   },
