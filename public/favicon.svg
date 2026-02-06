@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="drop-shadow(0 0 1px rgba(255, 255, 255, 0.3))">
+    <path d="M160 210V400H220V300C220 260 240 240 280 240H300V185C270 185 240 200 220 230V210H160Z" 
+          fill="white" 
+          stroke="#F0F0F0" 
+          stroke-width="1"/>
+    
+    <circle cx="340" cy="370" r="35" 
+            fill="#7B61FF" 
+            stroke="#F0F0F0" 
+            stroke-width="1"/>
+  </g>
+</svg>
