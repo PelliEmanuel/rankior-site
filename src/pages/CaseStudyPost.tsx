@@ -19,14 +19,15 @@ const CaseStudyPost = () => {
   useEffect(() => {
     const fetchStory = async () => {
       if (id) {
-        const data: any = await getCaseStudyById(id);
-        if (data) {
+        const data = await getCaseStudyById(id) as any;
+        if (data && data.fields) {
+          const featuredImage = data.fields.featuredImage as any;
           setStory({
             title: data.fields.companyName,
             industry: data.fields.industry,
             challenge: data.fields.challenge,
             solution: data.fields.result,
-            image: data.fields.featuredImage?.fields?.file?.url,
+            image: featuredImage?.fields?.file?.url,
             metrics: [
               { label: "Eficiencia", value: data.fields.efficiencyMetric || "+45%", icon: TrendingUp },
               { label: "Tiempo Ahorrado", value: data.fields.timeSavedMetric || "15h/sem", icon: Clock },
