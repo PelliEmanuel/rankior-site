@@ -16,6 +16,8 @@ import Careers from "./pages/Careers";
 import Contact from "./pages/Contact";
 import ThankYou from "./pages/ThankYou";
 import Comparison from "./pages/Comparison";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 import PageTransition from "./components/PageTransition";
 
@@ -38,6 +40,8 @@ const AnimatedRoutes = () => {
         <Route path="/contacto" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/gracias" element={<PageTransition><ThankYou /></PageTransition>} />
         <Route path="/comparativa" element={<PageTransition><Comparison /></PageTransition>} />
+        <Route path="/privacidad" element={<PageTransition><PrivacyPolicy /></PageTransition>} />
+        <Route path="/terminos" element={<PageTransition><TermsOfService /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>
     </AnimatePresence>
