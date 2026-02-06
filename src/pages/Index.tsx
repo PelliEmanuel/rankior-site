@@ -13,6 +13,7 @@ import SuccessStories from '@/components/SuccessStories';
 import Process from '@/components/Process';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
+import SecurityCompliance from '@/components/SecurityCompliance';
 import TrustBadges from '@/components/TrustBadges';
 import ResourceCenter from '@/components/ResourceCenter';
 import Newsletter from '@/components/Newsletter';
@@ -44,6 +45,7 @@ const Index = () => {
         <ScrollReveal><Process /></ScrollReveal>
         <ScrollReveal><Pricing /></ScrollReveal>
         <ScrollReveal><Testimonials /></ScrollReveal>
+        <ScrollReveal><SecurityCompliance /></ScrollReveal>
         <ScrollReveal><Partners /></ScrollReveal>
         <ScrollReveal><TrustBadges /></ScrollReveal>
         <ScrollReveal><ResourceCenter /></ScrollReveal>
