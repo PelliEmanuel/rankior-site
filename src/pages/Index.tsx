@@ -23,6 +23,7 @@ import FinalCTA from '@/components/FinalCTA';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import BackToTop from '@/components/BackToTop';
 import ScrollReveal from '@/components/ScrollReveal';
 import DashboardPreview from '@/components/DashboardPreview';
 import Partners from '@/components/Partners';
@@ -56,6 +57,7 @@ const Index = () => {
       </main>
       <Footer />
       <WhatsAppButton />
+      <BackToTop />
     </div>
   );
 };

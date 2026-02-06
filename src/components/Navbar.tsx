@@ -1,9 +1,10 @@
 "use client";
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
 import {
   Sheet,
   SheetContent,
@@ -34,13 +35,23 @@ const Navbar = () => {
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <Link 
+            <NavLink 
               key={link.name}
               to={link.href} 
-              className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+              className={({ isActive }) => cn(
+                "text-sm font-medium transition-colors relative py-2",
+                isActive ? "text-white" : "text-slate-400 hover:text-white"
+              )}
             >
-              {link.name}
-            </Link>
+              {({ isActive }) => (
+                <>
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-500 rounded-full" />
+                  )}
+                </>
+              )}
+            </NavLink>
           ))}
         </div>
 
@@ -65,13 +76,16 @@ const Navbar = () => {
                 </SheetHeader>
                 <div className="flex flex-col gap-6 mt-10">
                   {navLinks.map((link) => (
-                    <Link 
+                    <NavLink 
                       key={link.name}
                       to={link.href} 
-                      className="text-xl font-medium text-slate-300 hover:text-white transition-colors"
+                      className={({ isActive }) => cn(
+                        "text-xl font-medium transition-colors",
+                        isActive ? "text-indigo-400" : "text-slate-300 hover:text-white"
+                      )}
                     >
                       {link.name}
-                    </Link>
+                    </NavLink>
                   ))}
                   <DiagnosticDialog>
                     <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-full py-6 text-lg">
