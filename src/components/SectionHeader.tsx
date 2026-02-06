@@ -29,11 +29,11 @@ const SectionHeader = ({
           {subtitle}
         </p>
       )}
-      <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+      <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
         {title}
       </h2>
       {description && (
-        <p className="text-slate-400 text-lg leading-relaxed">
+        <p className="text-slate-400 text-lg mt-6 leading-relaxed">
           {description}
         </p>
       )}
