@@ -49,7 +49,7 @@ const CaseStudies = () => {
           <ScrollReveal>
             <div className="max-w-3xl">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Resultados que <span className="text-indigo-400">hablan</span> por nosotros
+                Resultados que <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">hablan</span> por nosotros
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 Explora cómo hemos transformado la operación de diversas empresas mexicanas, desde la optimización de inventarios hasta la automatización fiscal completa.

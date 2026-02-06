@@ -72,7 +72,7 @@ const Services = () => {
           <ScrollReveal>
             <div className="max-w-3xl mb-20">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Soluciones <span className="text-indigo-400">modulares</span> para cada etapa
+                Soluciones <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">modulares</span> para cada etapa
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 No implementamos software, diseñamos el sistema operativo que tu negocio necesita para escalar sin fricciones en el mercado mexicano.

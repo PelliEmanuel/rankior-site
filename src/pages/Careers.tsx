@@ -51,7 +51,7 @@ const Careers = () => {
           <div className="max-w-3xl mb-20">
             <ScrollReveal>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Únete al equipo que está <span className="text-indigo-400">digitalizando</span> México
+                Únete al equipo que está <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">digitalizando</span> México
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 Buscamos mentes curiosas y apasionadas por resolver problemas complejos a través de la tecnología. Si te emociona el impacto real en las empresas, este es tu lugar.

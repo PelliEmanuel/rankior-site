@@ -54,7 +54,7 @@ const Comparison = () => {
           <ScrollReveal>
             <div className="max-w-4xl mb-20">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Odoo vs. ERPs <span className="text-indigo-400">Tradicionales</span>
+                Odoo vs. ERPs <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Tradicionales</span>
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 ¿Por qué las empresas mexicanas están migrando de sistemas legados a Odoo? Comparamos la eficiencia, el costo y la adaptabilidad al mercado local.

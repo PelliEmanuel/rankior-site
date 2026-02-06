@@ -92,7 +92,7 @@ const Blog = () => {
           <ScrollReveal>
             <div className="max-w-3xl">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Conocimiento para <span className="text-indigo-400">escalar</span>
+                Conocimiento para <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">escalar</span>
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 Guías, análisis y noticias sobre Odoo, el SAT y las mejores prácticas empresariales en México.

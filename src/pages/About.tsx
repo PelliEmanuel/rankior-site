@@ -60,7 +60,7 @@ const About = () => {
           <div className="max-w-4xl mb-24">
             <ScrollReveal>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-                Transformando la <span className="text-indigo-400">operación</span> de las empresas mexicanas
+                Transformando la <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">operación</span> de las empresas mexicanas
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 En Rankior, nacimos con una misión clara: democratizar la tecnología de clase mundial para las empresas en México. Somos especialistas en Odoo, el ERP más flexible y potente del mercado.

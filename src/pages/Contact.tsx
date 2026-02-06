@@ -18,7 +18,7 @@ const Contact = () => {
           <ScrollReveal>
             <div className="max-w-3xl">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Hablemos de tu <span className="text-indigo-400">futuro</span>
+                Hablemos de tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">futuro</span>
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 Estamos aquí para resolver tus dudas y ayudarte a trazar el camino hacia una operación más eficiente.
