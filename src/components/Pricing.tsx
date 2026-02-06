@@ -7,21 +7,21 @@ import DiagnosticDialog from './DiagnosticDialog';
 
 const packages = [
   {
-    name: "Launch",
+    name: "Lanzamiento",
     description: "Ideal para startups y micro-empresas que buscan digitalizar su operación base.",
     features: ["Ventas y CRM", "Facturación CFDI 4.0", "Inventario básico", "1-3 usuarios"],
     popular: false
   },
   {
-    name: "Growth",
+    name: "Crecimiento",
     description: "Para empresas en expansión que requieren integración con e-commerce y BI.",
-    features: ["Todo lo de Launch", "Integración Shopify/Woo", "Dashboards BI", "Hasta 10 usuarios", "Soporte prioritario"],
+    features: ["Todo lo de Lanzamiento", "Integración Shopify/Woo", "Dashboards BI", "Hasta 10 usuarios", "Soporte prioritario"],
     popular: true
   },
   {
-    name: "Scale",
+    name: "Escalamiento",
     description: "Solución completa para medianas empresas con necesidades de manufactura.",
-    features: ["Todo lo de Growth", "Multi-sucursal", "Manufactura (MRP)", "Automatización avanzada", "Usuarios ilimitados"],
+    features: ["Todo lo de Crecimiento", "Multi-sucursal", "Manufactura (MRP)", "Automatización avanzada", "Usuarios ilimitados"],
     popular: false
   }
 ];
