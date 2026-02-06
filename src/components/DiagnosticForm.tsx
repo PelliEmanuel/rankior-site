@@ -6,9 +6,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { 
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { showSuccess } from "@/utils/toast";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle } from 'lucide-react';
 
 const DiagnosticForm = () => {
   const navigate = useNavigate();
@@ -16,9 +23,13 @@ const DiagnosticForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     employees: '',
-    industry: '',
+    revenue: '',
+    currentSystem: '',
+    budget: '',
+    timeline: '',
     challenge: ''
   });
 
@@ -27,21 +38,26 @@ const DiagnosticForm = () => {
     setFormData(prev => ({ ...prev, [id]: value }));
   };
 
+  const handleSelectChange = (id: string, value: string) => {
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
   const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    showSuccess("¡Solicitud enviada! Nos pondremos en contacto en menos de 24 horas.");
+    showSuccess("¡Diagnóstico solicitado! Analizaremos tu perfil y te contactaremos en breve.");
     setTimeout(() => {
       navigate('/gracias');
     }, 1000);
   };
 
   const steps = [
-    { title: "Información Personal", description: "Cuéntanos quién eres." },
-    { title: "Tu Empresa", description: "Danos contexto de tu negocio." },
-    { title: "Tus Retos", description: "¿Cómo podemos ayudarte?" }
+    { title: "Contacto", desc: "Datos básicos" },
+    { title: "Empresa", desc: "Tamaño y alcance" },
+    { title: "Contexto", desc: "Sistemas y tiempos" },
+    { title: "Retos", desc: "Necesidades" }
   ];
 
   return (
@@ -57,7 +73,7 @@ const DiagnosticForm = () => {
             }`}>
               {step > i + 1 ? <CheckCircle2 size={16} /> : i + 1}
             </div>
-            <span className={`text-[10px] uppercase tracking-widest font-bold ${
+            <span className={`text-[10px] uppercase tracking-widest font-bold hidden sm:block ${
               step === i + 1 ? 'text-indigo-400' : 'text-slate-500'
             }`}>
               {s.title}
@@ -66,7 +82,7 @@ const DiagnosticForm = () => {
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="min-h-[300px] flex flex-col">
+      <form onSubmit={handleSubmit} className="min-h-[350px] flex flex-col">
         <AnimatePresence mode="wait">
           {step === 1 && (
             <motion.div
@@ -78,26 +94,17 @@ const DiagnosticForm = () => {
             >
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-slate-300">Nombre completo</Label>
-                <Input 
-                  id="name" 
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Juan Pérez" 
-                  className="bg-white/5 border-white/10 text-white h-12 focus:ring-indigo-500" 
-                  required 
-                />
+                <Input id="name" value={formData.name} onChange={handleInputChange} placeholder="Juan Pérez" className="bg-white/5 border-white/10 text-white h-12" required />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email" className="text-slate-300">Correo corporativo</Label>
-                <Input 
-                  id="email" 
-                  type="email" 
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  placeholder="juan@empresa.com" 
-                  className="bg-white/5 border-white/10 text-white h-12 focus:ring-indigo-500" 
-                  required 
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-slate-300">Correo corporativo</Label>
+                  <Input id="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="juan@empresa.com" className="bg-white/5 border-white/10 text-white h-12" required />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone" className="text-slate-300">WhatsApp / Teléfono</Label>
+                  <Input id="phone" value={formData.phone} onChange={handleInputChange} placeholder="+52..." className="bg-white/5 border-white/10 text-white h-12" required />
+                </div>
               </div>
             </motion.div>
           )}
@@ -112,35 +119,36 @@ const DiagnosticForm = () => {
             >
               <div className="space-y-2">
                 <Label htmlFor="company" className="text-slate-300">Nombre de la empresa</Label>
-                <Input 
-                  id="company" 
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  placeholder="Mi Empresa S.A. de C.V." 
-                  className="bg-white/5 border-white/10 text-white h-12 focus:ring-indigo-500" 
-                  required 
-                />
+                <Input id="company" value={formData.company} onChange={handleInputChange} placeholder="Mi Empresa S.A." className="bg-white/5 border-white/10 text-white h-12" required />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="industry" className="text-slate-300">Industria</Label>
-                  <Input 
-                    id="industry" 
-                    value={formData.industry}
-                    onChange={handleInputChange}
-                    placeholder="Retail, Logística..." 
-                    className="bg-white/5 border-white/10 text-white h-12 focus:ring-indigo-500" 
-                  />
+                  <Label className="text-slate-300">Número de empleados</Label>
+                  <Select onValueChange={(v) => handleSelectChange('employees', v)} value={formData.employees}>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
+                      <SelectValue placeholder="Seleccionar..." />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-900 border-white/10 text-white">
+                      <SelectItem value="1-10">1 - 10</SelectItem>
+                      <SelectItem value="11-50">11 - 50</SelectItem>
+                      <SelectItem value="51-200">51 - 200</SelectItem>
+                      <SelectItem value="200+">Más de 200</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="employees" className="text-slate-300">Empleados</Label>
-                  <Input 
-                    id="employees" 
-                    value={formData.employees}
-                    onChange={handleInputChange}
-                    placeholder="10-50, 100+..." 
-                    className="bg-white/5 border-white/10 text-white h-12 focus:ring-indigo-500" 
-                  />
+                  <Label className="text-slate-300">Facturación anual (MXN)</Label>
+                  <Select onValueChange={(v) => handleSelectChange('revenue', v)} value={formData.revenue}>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
+                      <SelectValue placeholder="Seleccionar..." />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-900 border-white/10 text-white">
+                      <SelectItem value="under-1m">Menos de $1M</SelectItem>
+                      <SelectItem value="1m-10m">$1M - $10M</SelectItem>
+                      <SelectItem value="10m-50m">$10M - $50M</SelectItem>
+                      <SelectItem value="50m+">Más de $50M</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
             </motion.div>
@@ -155,14 +163,71 @@ const DiagnosticForm = () => {
               className="space-y-6 flex-grow"
             >
               <div className="space-y-2">
-                <Label htmlFor="challenge" className="text-slate-300">¿Cuál es tu principal reto hoy?</Label>
-                <Textarea 
-                  id="challenge" 
-                  value={formData.challenge}
-                  onChange={handleInputChange}
-                  placeholder="Ej: Mi inventario no coincide con mis ventas..." 
-                  className="bg-white/5 border-white/10 text-white min-h-[150px] focus:ring-indigo-500" 
-                />
+                <Label className="text-slate-300">Sistema actual (ERP/Software)</Label>
+                <Select onValueChange={(v) => handleSelectChange('currentSystem', v)} value={formData.currentSystem}>
+                  <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
+                    <SelectValue placeholder="¿Qué usas hoy?" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-slate-900 border-white/10 text-white">
+                    <SelectItem value="excel">Excel / Hojas de cálculo</SelectItem>
+                    <SelectItem value="aspel">Aspel / SAE</SelectItem>
+                    <SelectItem value="contpaqi">CONTPAQi</SelectItem>
+                    <SelectItem value="sap">SAP / Oracle / Microsoft</SelectItem>
+                    <SelectItem value="other">Otro sistema</SelectItem>
+                    <SelectItem value="none">Ninguno (Empresa nueva)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label className="text-slate-300">Presupuesto estimado</Label>
+                  <Select onValueChange={(v) => handleSelectChange('budget', v)} value={formData.budget}>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
+                      <SelectValue placeholder="Rango de inversión" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-900 border-white/10 text-white">
+                      <SelectItem value="under-50k">Menos de $50k MXN</SelectItem>
+                      <SelectItem value="50k-150k">$50k - $150k MXN</SelectItem>
+                      <SelectItem value="150k-500k">$150k - $500k MXN</SelectItem>
+                      <SelectItem value="500k+">Más de $500k MXN</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label className="text-slate-300">Plazo de implementación</Label>
+                  <Select onValueChange={(v) => handleSelectChange('timeline', v)} value={formData.timeline}>
+                    <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
+                      <SelectValue placeholder="¿Cuándo empezar?" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-slate-900 border-white/10 text-white">
+                      <SelectItem value="immediate">Inmediato</SelectItem>
+                      <SelectItem value="1-3-months">1 a 3 meses</SelectItem>
+                      <SelectItem value="3-6-months">3 a 6 meses</SelectItem>
+                      <SelectItem value="planning">Solo planeación</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {step === 4 && (
+            <motion.div
+              key="step4"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="space-y-6 flex-grow"
+            >
+              <div className="space-y-2">
+                <Label htmlFor="challenge" className="text-slate-300">Describe tu principal cuello de botella</Label>
+                <Textarea id="challenge" value={formData.challenge} onChange={handleInputChange} placeholder="Ej: Mi inventario no coincide con mis ventas y pierdo dinero..." className="bg-white/5 border-white/10 text-white min-h-[150px]" required />
+              </div>
+              <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex gap-3">
+                <AlertCircle className="text-indigo-400 shrink-0" size={20} />
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Al enviar este formulario, aceptas que un consultor senior analice tu caso para la sesión de diagnóstico.
+                </p>
               </div>
             </motion.div>
           )}
@@ -170,31 +235,23 @@ const DiagnosticForm = () => {
 
         <div className="flex gap-4 mt-10">
           {step > 1 && (
-            <Button 
-              type="button" 
-              variant="outline" 
-              onClick={prevStep}
-              className="flex-1 border-white/10 bg-white/5 hover:bg-white/10 text-white h-14 rounded-xl"
-            >
+            <Button type="button" variant="outline" onClick={prevStep} className="flex-1 border-white/10 bg-white/5 hover:bg-white/10 text-white h-14 rounded-xl">
               <ChevronLeft className="mr-2" size={18} /> Anterior
             </Button>
           )}
           
-          {step < 3 ? (
+          {step < 4 ? (
             <Button 
               type="button" 
               onClick={nextStep}
-              disabled={step === 1 ? !formData.name || !formData.email : !formData.company}
+              disabled={step === 1 ? !formData.name || !formData.email || !formData.phone : step === 2 ? !formData.company || !formData.revenue : !formData.currentSystem}
               className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold"
             >
               Siguiente <ChevronRight className="ml-2" size={18} />
             </Button>
           ) : (
-            <Button 
-              type="submit" 
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20"
-            >
-              Enviar solicitud
+            <Button type="submit" className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20">
+              Solicitar Diagnóstico Senior
             </Button>
           )}
         </div>
