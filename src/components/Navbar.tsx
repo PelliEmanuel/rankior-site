@@ -1,10 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Sheet,
   SheetContent,
@@ -15,6 +16,23 @@ import {
 import DiagnosticDialog from './DiagnosticDialog';
 
 const Navbar = () => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', controlNavbar);
+    return () => window.removeEventListener('scroll', controlNavbar);
+  }, [lastScrollY]);
+
   const navLinks = [
     { name: "Servicios", href: "/servicios" },
     { name: "Casos", href: "/casos" },
@@ -24,15 +42,19 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-md">
+    <motion.nav 
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -100 }}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-md"
+    >
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
-          <span className="text-2xl font-bold tracking-tighter text-white">
+        <Link to="/" className="flex items-center gap-2 group">
+          <span className="text-2xl font-bold tracking-tighter text-white group-hover:text-indigo-400 transition-colors">
             Rankior<span className="text-indigo-500">.</span>
           </span>
         </Link>
         
-        {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <NavLink 
@@ -47,7 +69,10 @@ const Navbar = () => {
                 <>
                   {link.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-500 rounded-full" />
+                    <motion.span 
+                      layoutId="nav-underline"
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-500 rounded-full" 
+                    />
                   )}
                 </>
               )}
@@ -57,12 +82,11 @@ const Navbar = () => {
 
         <div className="flex items-center gap-4">
           <DiagnosticDialog>
-            <Button className="hidden sm:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6">
+            <Button className="hidden sm:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 transition-all hover:scale-105 active:scale-95">
               Agendar diagnóstico
             </Button>
           </DiagnosticDialog>
           
-          {/* Mobile Menu */}
           <div className="md:hidden">
             <Sheet>
               <SheetTrigger asChild>
@@ -98,7 +122,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 
