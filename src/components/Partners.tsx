@@ -46,7 +46,7 @@ const Partners = () => {
               <img 
                 src={item.logo} 
                 alt={item.name} 
-                className="h-full w-auto object-contain brightness-0 invert opacity-60 hover:brightness-100 hover:invert-0 hover:opacity-100 transition-all duration-500"
+                className="h-full w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 hover:brightness-100 hover:invert-0 transition-all duration-500"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
