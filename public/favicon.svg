@@ -1,13 +1,15 @@
-<svg width="512" height="512" viewBox="150 170 280 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g filter="drop-shadow(0 0 1px rgba(255, 255, 255, 0.3))">
-    <path d="M180 190H290C335 190 355 215 355 245C355 275 335 300 290 300L360 400H295L230 300V400H180V190ZM230 235V265H285C300 265 305 255 305 245C305 235 300 235 285 235H230Z" 
-          fill="white" 
-          stroke="#F0F0F0" 
-          stroke-width="1"/>
-    
-    <circle cx="390" cy="380" r="35" 
-            fill="#7B61FF" 
-            stroke="#F0F0F0" 
-            stroke-width="1"/>
-  </g>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="140" fill="url(#bg)"/>
+  <path d="M160 120V392M160 120H310C370 120 390 165 390 215C390 265 370 310 310 310H160M310 310L380 410" 
+        stroke="white" 
+        stroke-width="65" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"/>
+  <circle cx="430" cy="430" r="65" fill="#22D3EE" stroke="#4F46E5" stroke-width="15"/>
 </svg>
