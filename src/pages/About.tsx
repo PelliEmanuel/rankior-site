@@ -1,13 +1,14 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
 import Partners from '@/components/Partners';
-import { Shield, Target, Zap, Award, Users2, Building2, Linkedin } from 'lucide-react';
+import { Shield, Target, Zap, Award, Users2, Building2, Linkedin, Star } from 'lucide-react';
 
 const values = [
   {
@@ -49,6 +50,17 @@ const team = [
 ];
 
 const About = () => {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [hash]);
+
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200">
       <BackgroundElements />
@@ -69,6 +81,25 @@ const About = () => {
           </div>
 
           <Partners />
+
+          {/* Mission Section */}
+          <section id="mision" className="my-32 scroll-mt-32">
+            <ScrollReveal>
+              <div className="p-10 md:p-16 rounded-[3rem] bg-indigo-600/10 border border-indigo-500/20 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-10">
+                  <Star size={120} className="text-indigo-400" />
+                </div>
+                <div className="max-w-4xl relative z-10">
+                  <h2 className="text-indigo-400 font-bold text-sm uppercase tracking-[0.3em] mb-8 flex items-center gap-3">
+                    <span className="w-8 h-px bg-indigo-500" /> Nuestra Misión
+                  </h2>
+                  <p className="text-2xl md:text-3xl font-medium text-white leading-relaxed italic">
+                    "Para nosotros, dar un servicio con la más alta ética profesional, atención a los detalles e intencionalidad detrás de todo lo que creamos es fundamental. Pensamos siempre en el mejor interés de nuestros clientes y de todas las personas que entran en contacto con cada uno de nuestros expertos, buscando establecer vínculos y el bienestar a largo plazo. Estamos innovando constantemente, mejorando nuestras prácticas e iterando diariamente para proveer el mejor servicio posible. Nos enorgullece dar una atención de 5 estrellas; cada trabajo que presentamos y cada cosa que creamos habla de nosotros y nuestro compromiso inquebrantable con el éxito de nuestros clientes."
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+          </section>
 
           {/* Stats/Impact */}
           <div className="grid md:grid-cols-3 gap-8 my-32">
