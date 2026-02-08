@@ -28,7 +28,6 @@ const DiagnosticForm = () => {
     employees: '',
     revenue: '',
     currentSystem: '',
-    budget: '',
     timeline: '',
     challenge: ''
   });
@@ -47,6 +46,11 @@ const DiagnosticForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (step < 4) {
+      nextStep();
+      return;
+    }
+    
     showSuccess("¡Diagnóstico solicitado! Analizaremos tu perfil y te contactaremos en breve.");
     setTimeout(() => {
       navigate('/gracias');
@@ -59,6 +63,16 @@ const DiagnosticForm = () => {
     { title: "Contexto", desc: "Sistemas y tiempos" },
     { title: "Retos", desc: "Necesidades" }
   ];
+
+  const isStepValid = () => {
+    switch (step) {
+      case 1: return !!(formData.name && formData.email && formData.phone);
+      case 2: return !!(formData.company && formData.revenue && formData.employees);
+      case 3: return !!(formData.currentSystem && formData.timeline);
+      case 4: return !!formData.challenge;
+      default: return false;
+    }
+  };
 
   return (
     <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl shadow-2xl">
@@ -178,35 +192,19 @@ const DiagnosticForm = () => {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label className="text-slate-300">Presupuesto estimado</Label>
-                  <Select onValueChange={(v) => handleSelectChange('budget', v)} value={formData.budget}>
-                    <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
-                      <SelectValue placeholder="Rango de inversión" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-slate-900 border-white/10 text-white">
-                      <SelectItem value="under-50k">Menos de $50k MXN</SelectItem>
-                      <SelectItem value="50k-150k">$50k - $150k MXN</SelectItem>
-                      <SelectItem value="150k-500k">$150k - $500k MXN</SelectItem>
-                      <SelectItem value="500k+">Más de $500k MXN</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div className="space-y-2">
-                  <Label className="text-slate-300">Plazo de implementación</Label>
-                  <Select onValueChange={(v) => handleSelectChange('timeline', v)} value={formData.timeline}>
-                    <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
-                      <SelectValue placeholder="¿Cuándo empezar?" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-slate-900 border-white/10 text-white">
-                      <SelectItem value="immediate">Inmediato</SelectItem>
-                      <SelectItem value="1-3-months">1 a 3 meses</SelectItem>
-                      <SelectItem value="3-6-months">3 a 6 meses</SelectItem>
-                      <SelectItem value="planning">Solo planeación</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+              <div className="space-y-2">
+                <Label className="text-slate-300">Plazo de implementación</Label>
+                <Select onValueChange={(v) => handleSelectChange('timeline', v)} value={formData.timeline}>
+                  <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
+                    <SelectValue placeholder="¿Cuándo empezar?" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-slate-900 border-white/10 text-white">
+                    <SelectItem value="immediate">Inmediato</SelectItem>
+                    <SelectItem value="1-3-months">1 a 3 meses</SelectItem>
+                    <SelectItem value="3-6-months">3 a 6 meses</SelectItem>
+                    <SelectItem value="planning">Solo planeación</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </motion.div>
           )}
@@ -240,20 +238,17 @@ const DiagnosticForm = () => {
             </Button>
           )}
           
-          {step < 4 ? (
-            <Button 
-              type="button" 
-              onClick={nextStep}
-              disabled={step === 1 ? !formData.name || !formData.email || !formData.phone : step === 2 ? !formData.company || !formData.revenue : !formData.currentSystem}
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold"
-            >
-              Siguiente <ChevronRight className="ml-2" size={18} />
-            </Button>
-          ) : (
-            <Button type="submit" className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20">
-              Solicitar Diagnóstico Senior
-            </Button>
-          )}
+          <Button 
+            type="submit" 
+            disabled={!isStepValid()}
+            className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20"
+          >
+            {step < 4 ? (
+              <>Siguiente <ChevronRight className="ml-2" size={18} /></>
+            ) : (
+              "Solicitar Diagnóstico Senior"
+            )}
+          </Button>
         </div>
       </form>
     </div>
