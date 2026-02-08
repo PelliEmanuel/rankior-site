@@ -13,13 +13,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { showSuccess } from "@/utils/toast";
+import { showSuccess, showError } from "@/utils/toast";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 const DiagnosticForm = () => {
   const navigate = useNavigate();
   const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,17 +45,29 @@ const DiagnosticForm = () => {
   const nextStep = () => setStep(prev => prev + 1);
   const prevStep = () => setStep(prev => prev - 1);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (step < 4) {
       nextStep();
       return;
     }
     
-    showSuccess("¡Diagnóstico solicitado! Analizaremos tu perfil y te contactaremos en breve.");
-    setTimeout(() => {
+    setIsSubmitting(true);
+
+    try {
+      // Aquí se realizaría la llamada a la API para enviar el correo a info@test51.odoo.com
+      // Por ahora simulamos el envío exitoso
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      console.log("Enviando datos a info@test51.odoo.com:", formData);
+      
+      showSuccess("¡Diagnóstico solicitado! Hemos enviado tu información a nuestro equipo.");
       navigate('/gracias');
-    }, 1000);
+    } catch (error) {
+      showError("Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const steps = [
@@ -233,17 +246,19 @@ const DiagnosticForm = () => {
 
         <div className="flex gap-4 mt-10">
           {step > 1 && (
-            <Button type="button" variant="outline" onClick={prevStep} className="flex-1 border-white/10 bg-white/5 hover:bg-white/10 text-white h-14 rounded-xl">
+            <Button type="button" variant="outline" onClick={prevStep} disabled={isSubmitting} className="flex-1 border-white/10 bg-white/5 hover:bg-white/10 text-white h-14 rounded-xl">
               <ChevronLeft className="mr-2" size={18} /> Anterior
             </Button>
           )}
           
           <Button 
             type="submit" 
-            disabled={!isStepValid()}
+            disabled={!isStepValid() || isSubmitting}
             className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20"
           >
-            {step < 4 ? (
+            {isSubmitting ? (
+              <Loader2 className="animate-spin" size={24} />
+            ) : step < 4 ? (
               <>Siguiente <ChevronRight className="ml-2" size={18} /></>
             ) : (
               "Solicitar Diagnóstico Senior"
