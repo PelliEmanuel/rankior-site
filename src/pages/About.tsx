@@ -8,6 +8,7 @@ import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import ScrollReveal from '@/components/ScrollReveal';
 import Partners from '@/components/Partners';
+import GoogleReviewCTA from '@/components/GoogleReviewCTA';
 import { Shield, Target, Zap, Award, Users2, Building2, Linkedin, Star } from 'lucide-react';
 
 const values = [
@@ -176,6 +177,9 @@ const About = () => {
               ))}
             </div>
           </section>
+
+          {/* Google Review CTA */}
+          <GoogleReviewCTA />
         </div>
       </main>
 
