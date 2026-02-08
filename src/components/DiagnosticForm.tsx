@@ -16,6 +16,7 @@ import {
 import { showSuccess, showError } from "@/utils/toast";
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
 
 const DiagnosticForm = () => {
   const navigate = useNavigate();
@@ -55,16 +56,21 @@ const DiagnosticForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Aquí se realizaría la llamada a la API para enviar el correo a info@test51.odoo.com
-      // Por ahora simulamos el envío exitoso
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Llamada a la Edge Function de Supabase llamada 'send-contact-email'
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: { 
+          ...formData,
+          to: 'info@test51.odoo.com'
+        },
+      });
+
+      if (error) throw error;
       
-      console.log("Enviando datos a info@test51.odoo.com:", formData);
-      
-      showSuccess("¡Diagnóstico solicitado! Hemos enviado tu información a nuestro equipo.");
+      showSuccess("¡Diagnóstico solicitado con éxito!");
       navigate('/gracias');
     } catch (error) {
-      showError("Hubo un error al enviar tu solicitud. Por favor, intenta de nuevo.");
+      console.error("Error enviando el formulario:", error);
+      showError("No pudimos enviar tu solicitud. Por favor, intenta de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -89,7 +95,6 @@ const DiagnosticForm = () => {
 
   return (
     <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl shadow-2xl">
-      {/* Progress Bar */}
       <div className="flex justify-between mb-10 relative">
         <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -translate-y-1/2 -z-10" />
         {steps.map((s, i) => (
