@@ -1,9 +1,11 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import DiagnosticDialog from './DiagnosticDialog';
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const packages = [
   {
@@ -27,6 +29,8 @@ const packages = [
 ];
 
 const Pricing = () => {
+  const [isAnnual, setIsAnnual] = useState(true);
+
   return (
     <section id="precios" className="py-24 relative">
       <div className="container mx-auto px-4">
@@ -34,9 +38,21 @@ const Pricing = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Paquetes diseñados para escalar
           </h2>
-          <p className="text-slate-400 text-lg">
+          <p className="text-slate-400 text-lg mb-10">
             Soluciones modulares que crecen al ritmo de tu empresa. Selecciona el punto de partida ideal para tu transformación.
           </p>
+
+          <div className="flex items-center justify-center gap-4 mb-8">
+            <Label className={cn("text-sm font-medium", !isAnnual ? "text-white" : "text-slate-500")}>Mensual</Label>
+            <Switch 
+              checked={isAnnual} 
+              onCheckedChange={setIsAnnual}
+              className="data-[state=checked]:bg-indigo-600"
+            />
+            <Label className={cn("text-sm font-medium", isAnnual ? "text-white" : "text-slate-500")}>
+              Anual <span className="ml-1 text-emerald-400 text-[10px] font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full">Ahorra 20%</span>
+            </Label>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
@@ -88,4 +104,5 @@ const Pricing = () => {
   );
 };
 
+import { cn } from "@/lib/utils";
 export default Pricing;

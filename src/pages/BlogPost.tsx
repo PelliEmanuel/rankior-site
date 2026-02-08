@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import ReadingProgress from '@/components/ReadingProgress';
 import { ArrowLeft, Calendar, User, Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { getBlogPostById } from '@/lib/cms';
@@ -36,6 +37,7 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-[#020617] text-slate-200">
       <BackgroundElements />
+      <ReadingProgress />
       <Navbar />
       
       <main className="pt-32 pb-20">
@@ -67,7 +69,6 @@ const BlogPost = () => {
             </div>
 
             <div className="prose prose-invert prose-indigo max-w-none">
-              {/* In a real app, you'd use a rich text renderer for Contentful content */}
               <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
                 {typeof content === 'string' ? content : "Contenido disponible en el CMS."}
               </div>

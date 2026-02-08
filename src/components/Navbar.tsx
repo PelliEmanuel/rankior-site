@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import {
   Sheet,
   SheetContent,
@@ -14,6 +14,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import DiagnosticDialog from './DiagnosticDialog';
+import SearchDialog from './SearchDialog';
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -80,7 +81,13 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <SearchDialog>
+            <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-white/5 rounded-full">
+              <Search size={20} />
+            </Button>
+          </SearchDialog>
+
           <DiagnosticDialog>
             <Button className="hidden sm:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 transition-all hover:scale-105 active:scale-95">
               Agendar diagnóstico
