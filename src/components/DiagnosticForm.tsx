@@ -56,21 +56,36 @@ const DiagnosticForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Llamada a la Edge Function de Supabase llamada 'send-contact-email'
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      // 1. Intentar enviar vía Edge Function
+      const { error: functionError } = await supabase.functions.invoke('send-contact-email', {
         body: { 
           ...formData,
           to: 'info@test51.odoo.com'
         },
       });
 
-      if (error) throw error;
+      if (functionError) {
+        console.warn("Edge Function no disponible, intentando guardar en tabla 'leads'...");
+        
+        // 2. Fallback: Intentar guardar en tabla 'leads'
+        const { error: dbError } = await supabase
+          .from('leads')
+          .insert([{ 
+            ...formData, 
+            created_at: new Date().toISOString() 
+          }]);
+
+        if (dbError) {
+          console.error("Error en base de datos:", dbError);
+          throw new Error("No se pudo procesar la solicitud. Verifica que la tabla 'leads' exista en Supabase.");
+        }
+      }
       
       showSuccess("¡Diagnóstico solicitado con éxito!");
       navigate('/gracias');
-    } catch (error) {
-      console.error("Error enviando el formulario:", error);
-      showError("No pudimos enviar tu solicitud. Por favor, intenta de nuevo.");
+    } catch (error: any) {
+      console.error("Error detallado:", error);
+      showError(error.message || "Error de conexión con Supabase. Intenta de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
