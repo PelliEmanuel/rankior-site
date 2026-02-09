@@ -31,6 +31,7 @@ const DiagnosticForm = () => {
     employees: '',
     revenue: '',
     currentSystems: [] as string[],
+    otherSystemName: '',
     timeline: '',
     challenge: '',
     subscribeNewsletter: true
@@ -39,7 +40,6 @@ const DiagnosticForm = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
     
-    // Validación específica para el teléfono
     if (id === 'phone') {
       const filteredValue = value.replace(/[^0-9+]/g, '');
       setFormData(prev => ({ ...prev, [id]: filteredValue }));
@@ -81,10 +81,18 @@ const DiagnosticForm = () => {
     setIsSubmitting(true);
 
     try {
+      // Preparamos la lista de sistemas para el envío
+      let systemsList = formData.currentSystems.map(s => {
+        if (s === 'other' && formData.otherSystemName) {
+          return `Otro (${formData.otherSystemName})`;
+        }
+        return s;
+      }).join(', ');
+
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: { 
           ...formData,
-          currentSystems: formData.currentSystems.join(', '),
+          currentSystems: systemsList,
           to: 'info@test51.odoo.com'
         },
       });
@@ -112,7 +120,10 @@ const DiagnosticForm = () => {
     switch (step) {
       case 1: return !!(formData.name && formData.email && formData.phone);
       case 2: return !!(formData.company && formData.revenue && formData.employees);
-      case 3: return formData.currentSystems.length > 0 && !!formData.timeline;
+      case 3: 
+        const hasSystems = formData.currentSystems.length > 0;
+        const otherValid = !formData.currentSystems.includes('other') || !!formData.otherSystemName;
+        return hasSystems && otherValid && !!formData.timeline;
       case 4: return !!formData.challenge;
       default: return false;
     }
@@ -248,6 +259,28 @@ const DiagnosticForm = () => {
                   ))}
                 </div>
               </div>
+
+              <AnimatePresence>
+                {formData.currentSystems.includes('other') && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="space-y-2 overflow-hidden"
+                  >
+                    <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema utilizas?</Label>
+                    <Input 
+                      id="otherSystemName" 
+                      value={formData.otherSystemName} 
+                      onChange={handleInputChange} 
+                      placeholder="Nombre del sistema..." 
+                      className="bg-white/5 border-white/10 text-white h-12" 
+                      required 
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <div className="space-y-2">
                 <Label className="text-slate-300">Plazo de implementación</Label>
                 <Select onValueChange={(v) => handleSelectChange('timeline', v)} value={formData.timeline}>
