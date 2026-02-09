@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { 
   Select,
   SelectContent,
@@ -15,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { showSuccess, showError } from "@/utils/toast";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2, Mail } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const DiagnosticForm = () => {
@@ -31,7 +32,8 @@ const DiagnosticForm = () => {
     revenue: '',
     currentSystem: '',
     timeline: '',
-    challenge: ''
+    challenge: '',
+    subscribeNewsletter: true
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -41,6 +43,10 @@ const DiagnosticForm = () => {
 
   const handleSelectChange = (id: string, value: string) => {
     setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleCheckboxChange = (checked: boolean) => {
+    setFormData(prev => ({ ...prev, subscribeNewsletter: checked }));
   };
 
   const nextStep = () => setStep(prev => prev + 1);
@@ -56,7 +62,6 @@ const DiagnosticForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Llamada a la Edge Function de Supabase llamada 'send-contact-email'
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: { 
           ...formData,
@@ -237,8 +242,30 @@ const DiagnosticForm = () => {
             >
               <div className="space-y-2">
                 <Label htmlFor="challenge" className="text-slate-300">Describe tu principal cuello de botella</Label>
-                <Textarea id="challenge" value={formData.challenge} onChange={handleInputChange} placeholder="Ej: Mi inventario no coincide con mis ventas y pierdo dinero..." className="bg-white/5 border-white/10 text-white min-h-[150px]" required />
+                <Textarea id="challenge" value={formData.challenge} onChange={handleInputChange} placeholder="Ej: Mi inventario no coincide con mis ventas y pierdo dinero..." className="bg-white/5 border-white/10 text-white min-h-[120px]" required />
               </div>
+              
+              <div className="flex items-start space-x-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer" onClick={() => handleCheckboxChange(!formData.subscribeNewsletter)}>
+                <Checkbox 
+                  id="subscribeNewsletter" 
+                  checked={formData.subscribeNewsletter} 
+                  onCheckedChange={(checked) => handleCheckboxChange(checked as boolean)}
+                  className="mt-1 border-white/20 data-[state=checked]:bg-indigo-600 data-[state=checked]:border-indigo-600"
+                />
+                <div className="grid gap-1.5 leading-none">
+                  <label
+                    htmlFor="subscribeNewsletter"
+                    className="text-sm font-medium text-white leading-none cursor-pointer flex items-center gap-2"
+                  >
+                    <Mail size={14} className="text-indigo-400" />
+                    Recibir estrategias para escalar mi empresa
+                  </label>
+                  <p className="text-xs text-slate-500">
+                    Solo enviamos contenido de alto valor. Cero spam, garantizado.
+                  </p>
+                </div>
+              </div>
+
               <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex gap-3">
                 <AlertCircle className="text-indigo-400 shrink-0" size={20} />
                 <p className="text-xs text-slate-400 leading-relaxed">
