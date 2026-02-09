@@ -245,7 +245,7 @@ const DiagnosticForm = () => {
                 <Textarea id="challenge" value={formData.challenge} onChange={handleInputChange} placeholder="Ej: Mi inventario no coincide con mis ventas y pierdo dinero..." className="bg-white/5 border-white/10 text-white min-h-[120px]" required />
               </div>
               
-              <div className="flex items-start space-x-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer" onClick={() => handleCheckboxChange(!formData.subscribeNewsletter)}>
+              <div className="flex items-start space-x-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
                 <Checkbox 
                   id="subscribeNewsletter" 
                   checked={formData.subscribeNewsletter} 
