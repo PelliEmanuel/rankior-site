@@ -118,7 +118,7 @@ const DiagnosticForm = () => {
 
   const isStepValid = () => {
     switch (step) {
-      case 1: return !!(formData.name && formData.email && formData.phone);
+      case 1: return !!(formData.name && formData.email);
       case 2: return !!(formData.company && formData.revenue && formData.employees);
       case 3: 
         const hasSystems = formData.currentSystems.length > 0;
@@ -179,8 +179,8 @@ const DiagnosticForm = () => {
                   <Input id="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="juan@empresa.com" className="bg-white/5 border-white/10 text-white h-12" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-slate-300">WhatsApp / Teléfono</Label>
-                  <Input id="phone" value={formData.phone} onChange={handleInputChange} placeholder="+52..." className="bg-white/5 border-white/10 text-white h-12" required />
+                  <Label htmlFor="phone" className="text-slate-300">WhatsApp / Teléfono (Opcional)</Label>
+                  <Input id="phone" value={formData.phone} onChange={handleInputChange} placeholder="+52..." className="bg-white/5 border-white/10 text-white h-12" />
                 </div>
               </div>
             </motion.div>
