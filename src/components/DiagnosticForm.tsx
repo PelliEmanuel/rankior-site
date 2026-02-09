@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/select";
 import { showSuccess, showError } from "@/utils/toast";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2, Mail } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2, Mail, Check } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 
 const DiagnosticForm = () => {
@@ -30,7 +30,7 @@ const DiagnosticForm = () => {
     company: '',
     employees: '',
     revenue: '',
-    currentSystem: '',
+    currentSystems: [] as string[],
     timeline: '',
     challenge: '',
     subscribeNewsletter: true
@@ -38,11 +38,30 @@ const DiagnosticForm = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
+    
+    // Validación específica para el teléfono
+    if (id === 'phone') {
+      const filteredValue = value.replace(/[^0-9+]/g, '');
+      setFormData(prev => ({ ...prev, [id]: filteredValue }));
+      return;
+    }
+
     setFormData(prev => ({ ...prev, [id]: value }));
   };
 
   const handleSelectChange = (id: string, value: string) => {
     setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const toggleSystem = (system: string) => {
+    setFormData(prev => {
+      const current = prev.currentSystems;
+      if (current.includes(system)) {
+        return { ...prev, currentSystems: current.filter(s => s !== system) };
+      } else {
+        return { ...prev, currentSystems: [...current, system] };
+      }
+    });
   };
 
   const handleCheckboxChange = (checked: boolean) => {
@@ -65,6 +84,7 @@ const DiagnosticForm = () => {
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: { 
           ...formData,
+          currentSystems: formData.currentSystems.join(', '),
           to: 'info@test51.odoo.com'
         },
       });
@@ -92,11 +112,20 @@ const DiagnosticForm = () => {
     switch (step) {
       case 1: return !!(formData.name && formData.email && formData.phone);
       case 2: return !!(formData.company && formData.revenue && formData.employees);
-      case 3: return !!(formData.currentSystem && formData.timeline);
+      case 3: return formData.currentSystems.length > 0 && !!formData.timeline;
       case 4: return !!formData.challenge;
       default: return false;
     }
   };
+
+  const systemOptions = [
+    { id: 'excel', label: 'Excel / Hojas de cálculo' },
+    { id: 'aspel', label: 'Aspel / SAE' },
+    { id: 'contpaqi', label: 'CONTPAQi' },
+    { id: 'sap', label: 'SAP / Oracle / MS' },
+    { id: 'other', label: 'Otro sistema' },
+    { id: 'none', label: 'Ninguno' }
+  ];
 
   return (
     <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl shadow-2xl">
@@ -199,21 +228,25 @@ const DiagnosticForm = () => {
               exit={{ opacity: 0, x: -20 }}
               className="space-y-6 flex-grow"
             >
-              <div className="space-y-2">
-                <Label className="text-slate-300">Sistema actual (ERP/Software)</Label>
-                <Select onValueChange={(v) => handleSelectChange('currentSystem', v)} value={formData.currentSystem}>
-                  <SelectTrigger className="bg-white/5 border-white/10 text-white h-12">
-                    <SelectValue placeholder="¿Qué usas hoy?" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-slate-900 border-white/10 text-white">
-                    <SelectItem value="excel">Excel / Hojas de cálculo</SelectItem>
-                    <SelectItem value="aspel">Aspel / SAE</SelectItem>
-                    <SelectItem value="contpaqi">CONTPAQi</SelectItem>
-                    <SelectItem value="sap">SAP / Oracle / Microsoft</SelectItem>
-                    <SelectItem value="other">Otro sistema</SelectItem>
-                    <SelectItem value="none">Ninguno (Empresa nueva)</SelectItem>
-                  </SelectContent>
-                </Select>
+              <div className="space-y-3">
+                <Label className="text-slate-300">Sistemas actuales (Selección múltiple)</Label>
+                <div className="grid grid-cols-2 gap-2">
+                  {systemOptions.map((opt) => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => toggleSystem(opt.id)}
+                      className={`flex items-center justify-between px-4 py-3 rounded-xl border text-xs font-medium transition-all ${
+                        formData.currentSystems.includes(opt.id)
+                        ? 'bg-indigo-600/20 border-indigo-500 text-white'
+                        : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
+                      }`}
+                    >
+                      {opt.label}
+                      {formData.currentSystems.includes(opt.id) && <Check size={14} className="text-indigo-400" />}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div className="space-y-2">
                 <Label className="text-slate-300">Plazo de implementación</Label>
