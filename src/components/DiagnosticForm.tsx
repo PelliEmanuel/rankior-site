@@ -273,7 +273,7 @@ const DiagnosticForm = () => {
                       id="otherSystemName" 
                       value={formData.otherSystemName} 
                       onChange={handleInputChange} 
-                      placeholder="Nombre del sistema..." 
+                      placeholder="Nombre su(s) sistema(s)..." 
                       className="bg-white/5 border-white/10 text-white h-12" 
                       required 
                     />
