@@ -359,7 +359,7 @@ const DiagnosticForm = () => {
             ) : step < 4 ? (
               <>Siguiente <ChevronRight className="ml-2" size={18} /></>
             ) : (
-              "Solicitar Diagnóstico Senior"
+              "Solicitar Diagnóstico"
             )}
           </Button>
         </div>
