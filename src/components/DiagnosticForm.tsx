@@ -93,7 +93,7 @@ const DiagnosticForm = () => {
         body: { 
           ...formData,
           currentSystems: systemsList,
-          to: 'info@test51.odoo.com'
+          to: 'leads@rankior.odoo.com'
         },
       });
 
