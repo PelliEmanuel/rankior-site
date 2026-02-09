@@ -268,7 +268,7 @@ const DiagnosticForm = () => {
                     exit={{ opacity: 0, height: 0 }}
                     className="space-y-2 overflow-hidden"
                   >
-                    <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema utilizas?</Label>
+                    <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema(s) utilizas?</Label>
                     <Input 
                       id="otherSystemName" 
                       value={formData.otherSystemName} 
