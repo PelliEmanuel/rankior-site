@@ -10,11 +10,11 @@ const BackToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      const shouldBeVisible = window.pageYOffset > 500;
+      setIsVisible(prev => {
+        if (prev !== shouldBeVisible) return shouldBeVisible;
+        return prev;
+      });
     };
 
     window.addEventListener('scroll', toggleVisibility);

@@ -174,7 +174,7 @@ function useToast() {
         listeners.splice(index, 1);
       }
     };
-  }, []); // Cambiado de [state] a [] para evitar bucles de actualización
+  }, []);
 
   return {
     ...state,

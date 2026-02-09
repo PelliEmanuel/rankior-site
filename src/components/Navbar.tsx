@@ -23,12 +23,12 @@ const Navbar = () => {
   useEffect(() => {
     const controlNavbar = () => {
       const currentScrollY = window.scrollY;
+      const shouldBeVisible = !(currentScrollY > lastScrollY.current && currentScrollY > 100);
       
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
+      setIsVisible(prev => {
+        if (prev !== shouldBeVisible) return shouldBeVisible;
+        return prev;
+      });
       
       lastScrollY.current = currentScrollY;
     };
