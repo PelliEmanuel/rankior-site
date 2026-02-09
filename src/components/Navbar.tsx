@@ -86,7 +86,12 @@ const Navbar = () => {
 
         <div className="flex items-center gap-2 sm:gap-4">
           <SearchDialog>
-            <Button variant="ghost" size="icon" className="text-slate-400 hover:text-white hover:bg-white/5 rounded-full">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-slate-400 hover:text-white hover:bg-white/5 rounded-full"
+              aria-label="Abrir buscador"
+            >
               <Search size={20} />
             </Button>
           </SearchDialog>
