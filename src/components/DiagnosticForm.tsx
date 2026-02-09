@@ -92,8 +92,7 @@ const DiagnosticForm = () => {
       const { error } = await supabase.functions.invoke('send-contact-email', {
         body: { 
           ...formData,
-          currentSystems: systemsList,
-          to: 'leads@rankior.odoo.com'
+          currentSystems: systemsList
         },
       });
 
