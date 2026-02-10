@@ -288,9 +288,9 @@ const DiagnosticForm = () => {
                   </SelectTrigger>
                   <SelectContent className="bg-slate-900 border-white/10 text-white">
                     <SelectItem value="Inmediato">Inmediato</SelectItem>
-                    <SelectItem value="1-3-Meses">1 a 3 meses</SelectItem>
-                    <SelectItem value="3-6-Meses">3 a 6 meses</SelectItem>
-                    <SelectItem value="Planeacion">Solo planeación</SelectItem>
+                    <SelectItem value="1 a 3 meses">1 a 3 meses</SelectItem>
+                    <SelectItem value="3 a 6 meses">3 a 6 meses</SelectItem>
+                    <SelectItem value="Solo planeación">Solo planeación</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -358,7 +358,7 @@ const DiagnosticForm = () => {
             ) : step < 4 ? (
               <>Siguiente <ChevronRight className="ml-2" size={18} /></>
             ) : (
-              "Solicitar Diagnóstico Senior"
+              "Solicitar Diagnóstico"
             )}
           </Button>
         </div>
