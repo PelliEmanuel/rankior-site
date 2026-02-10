@@ -36,7 +36,7 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <DiagnosticDialog>
                 <Button size="lg" className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full h-14 px-8 text-lg font-semibold shadow-lg shadow-indigo-500/20">
-                  Agendar diagnóstico 30 min
+                  Agendar diagnóstico
                 </Button>
               </DiagnosticDialog>
               <Button size="lg" variant="outline" asChild className="border-white/10 bg-white/5 hover:bg-white/10 text-white rounded-full h-14 px-8 text-lg font-semibold backdrop-blur-sm">
