@@ -81,7 +81,6 @@ const DiagnosticForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Preparamos la lista de sistemas para el envío
       let systemsList = formData.currentSystems.map(s => {
         if (s === 'Otro' && formData.otherSystemName) {
           return `Otro (${formData.otherSystemName})`;
@@ -205,9 +204,9 @@ const DiagnosticForm = () => {
                       <SelectValue placeholder="Seleccionar..." />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-900 border-white/10 text-white">
-                      <SelectItem value="1-10">1 - 10</SelectItem>
-                      <SelectItem value="11-50">11 - 50</SelectItem>
-                      <SelectItem value="51-200">51 - 200</SelectItem>
+                      <SelectItem value="1 - 10">1 - 10</SelectItem>
+                      <SelectItem value="11 - 50">11 - 50</SelectItem>
+                      <SelectItem value="51 - 200">51 - 200</SelectItem>
                       <SelectItem value="200+">Más de 200</SelectItem>
                     </SelectContent>
                   </Select>
@@ -267,7 +266,7 @@ const DiagnosticForm = () => {
                     exit={{ opacity: 0, height: 0 }}
                     className="space-y-2 overflow-hidden"
                   >
-                    <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema utilizas?</Label>
+                    <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema(s) utilizas?</Label>
                     <Input 
                       id="otherSystemName" 
                       value={formData.otherSystemName} 
