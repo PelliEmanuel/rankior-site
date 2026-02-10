@@ -219,10 +219,10 @@ const DiagnosticForm = () => {
                       <SelectValue placeholder="Seleccionar..." />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-900 border-white/10 text-white">
-                      <SelectItem value="Menos-1M">Menos de $1M</SelectItem>
+                      <SelectItem value="Menos de $1M">Menos de $1M</SelectItem>
                       <SelectItem value="1M-10M">$1M - $10M</SelectItem>
                       <SelectItem value="10M-50M">$10M - $50M</SelectItem>
-                      <SelectItem value="Mas-50M">Más de $50M</SelectItem>
+                      <SelectItem value="Más de $50M">Más de $50M</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
