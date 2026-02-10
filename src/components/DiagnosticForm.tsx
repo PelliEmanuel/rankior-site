@@ -55,12 +55,31 @@ const DiagnosticForm = () => {
 
   const toggleSystem = (system: string) => {
     setFormData(prev => {
-      const current = prev.currentSystems;
+      let current = [...prev.currentSystems];
+      let otherName = prev.otherSystemName;
+      
       if (current.includes(system)) {
-        return { ...prev, currentSystems: current.filter(s => s !== system) };
+        // Si ya está seleccionado, lo quitamos
+        current = current.filter(s => s !== system);
+        if (system === 'Otro') otherName = '';
       } else {
-        return { ...prev, currentSystems: [...current, system] };
+        // Si no está seleccionado, lo agregamos con lógica de exclusión
+        if (system === 'Ninguno') {
+          // Si seleccionamos "Ninguno", quitamos todo lo demás
+          current = ['Ninguno'];
+          otherName = '';
+        } else {
+          // Si seleccionamos cualquier otro, quitamos "Ninguno"
+          current = current.filter(s => s !== 'Ninguno');
+          current.push(system);
+        }
       }
+      
+      return { 
+        ...prev, 
+        currentSystems: current,
+        otherSystemName: otherName
+      };
     });
   };
 
@@ -81,6 +100,7 @@ const DiagnosticForm = () => {
     setIsSubmitting(true);
 
     try {
+      // Preparamos la lista de sistemas para el envío
       let systemsList = formData.currentSystems.map(s => {
         if (s === 'Otro' && formData.otherSystemName) {
           return `Otro (${formData.otherSystemName})`;
@@ -204,9 +224,9 @@ const DiagnosticForm = () => {
                       <SelectValue placeholder="Seleccionar..." />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-900 border-white/10 text-white">
-                      <SelectItem value="1 - 10">1 - 10</SelectItem>
-                      <SelectItem value="11 - 50">11 - 50</SelectItem>
-                      <SelectItem value="51 - 200">51 - 200</SelectItem>
+                      <SelectItem value="1-10">1 - 10</SelectItem>
+                      <SelectItem value="11-50">11 - 50</SelectItem>
+                      <SelectItem value="51-200">51 - 200</SelectItem>
                       <SelectItem value="200+">Más de 200</SelectItem>
                     </SelectContent>
                   </Select>
@@ -218,10 +238,10 @@ const DiagnosticForm = () => {
                       <SelectValue placeholder="Seleccionar..." />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-900 border-white/10 text-white">
-                      <SelectItem value="Menos de $1M">Menos de $1M</SelectItem>
-                      <SelectItem value="$1M - $10M">$1M - $10M</SelectItem>
-                      <SelectItem value="$10M - $50M">$10M - $50M</SelectItem>
-                      <SelectItem value="Más de $50M">Más de $50M</SelectItem>
+                      <SelectItem value="Menos-1M">Menos de $1M</SelectItem>
+                      <SelectItem value="1M-10M">$1M - $10M</SelectItem>
+                      <SelectItem value="10M-50M">$10M - $50M</SelectItem>
+                      <SelectItem value="Mas-50M">Más de $50M</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -266,7 +286,7 @@ const DiagnosticForm = () => {
                     exit={{ opacity: 0, height: 0 }}
                     className="space-y-2 overflow-hidden"
                   >
-                    <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema(s) utilizas?</Label>
+                    <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema utilizas?</Label>
                     <Input 
                       id="otherSystemName" 
                       value={formData.otherSystemName} 
@@ -287,9 +307,9 @@ const DiagnosticForm = () => {
                   </SelectTrigger>
                   <SelectContent className="bg-slate-900 border-white/10 text-white">
                     <SelectItem value="Inmediato">Inmediato</SelectItem>
-                    <SelectItem value="1 a 3 meses">1 a 3 meses</SelectItem>
-                    <SelectItem value="3 a 6 meses">3 a 6 meses</SelectItem>
-                    <SelectItem value="Solo planeación">Solo planeación</SelectItem>
+                    <SelectItem value="1-3-Meses">1 a 3 meses</SelectItem>
+                    <SelectItem value="3-6-Meses">3 a 6 meses</SelectItem>
+                    <SelectItem value="Planeacion">Solo planeación</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -357,7 +377,7 @@ const DiagnosticForm = () => {
             ) : step < 4 ? (
               <>Siguiente <ChevronRight className="ml-2" size={18} /></>
             ) : (
-              "Solicitar Diagnóstico"
+              "Solicitar Diagnóstico Senior"
             )}
           </Button>
         </div>
