@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido a Rankior</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #1e293b; margin: 0; padding: 0; background-color: #f8fafc; }
+        .container { max-width: 600px; margin: 20px auto; background: #ffffff; border-radius: 16px; overflow: hidden; shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        .header { background: #4f46e5; padding: 40px 20px; text-align: center; color: white; }
+        .content { padding: 40px 30px; }
+        .footer { background: #f1f5f9; padding: 20px; text-align: center; font-size: 12px; color: #64748b; }
+        .button { display: inline-block; padding: 16px 32px; background-color: #4f46e5; color: #ffffff !important; text-decoration: none; border-radius: 50px; font-weight: bold; margin: 30px 0; }
+        .highlight { color: #4f46e5; font-weight: bold; }
+        .steps { background: #f8fafc; border-radius: 12px; padding: 20px; margin-top: 20px; }
+        h1 { margin: 0; font-size: 24px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Rankior<span>.</span></h1>
+            <p style="margin-top: 10px; opacity: 0.9;">Expertos en Odoo para México</p>
+        </div>
+        <div class="content">
+            <p>¡Felicidades <strong>{Customer_Name}</strong>!</p>
+            <p>Ya diste el primer paso para crecer de forma inteligente con <span class="highlight">Rankior + Odoo</span>. Estamos listos para ayudarte a transformar tu operación.</p>
+            
+            <p>Para continuar, necesitamos que elijas el horario que mejor te convenga para realizar el <strong>diagnóstico gratuito</strong> de tu empresa:</p>
+            
+            <div style="text-align: center;">
+                <a href="{Booking_Link}" class="button">Agendar mi Diagnóstico Ahora</a>
+            </div>
+
+            <div class="steps">
+                <p style="margin-top: 0; font-weight: bold;">¿Qué veremos en esta llamada?</p>
+                <ul style="margin-bottom: 0; padding-left: 20px;">
+                    <li>Análisis de tus cuellos de botella actuales.</li>
+                    <li>Mapa de procesos sugerido en Odoo.</li>
+                    <li>Roadmap de implementación (30/60/90 días).</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 30px;">Estamos atentos ante cualquier duda que tengas. Puedes responder directamente a este mensaje y te atenderemos a la brevedad.</p>
+            
+            <p>Gracias de nuevo por tu interés,<br>
+            <strong>¡Estamos muy emocionados de conocerte!</strong></p>
+        </div>
+        <div class="footer">
+            <p>© 2024 Rankior. Todos los derechos reservados.<br>
+            CDMX, México | <a href="https://rankior.com" style="color: #4f46e5;">rankior.com</a></p>
+        </div>
+    </div>
+</body>
+</html>
