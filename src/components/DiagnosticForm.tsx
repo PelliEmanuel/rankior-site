@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Label } from "@/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { 
@@ -16,11 +16,13 @@ import {
 } from "@/components/ui/select";
 import { showSuccess, showError } from "@/utils/toast";
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2, Mail, Check } from 'lucide-react';
+import { ChevronRight, ChevronLeft, CheckCircle2, AlertCircle, Loader2, Mail, Check, ShieldCheck } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { useUTM } from '@/hooks/use-utm';
 
 const DiagnosticForm = () => {
   const navigate = useNavigate();
+  const utms = useUTM();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -39,13 +41,11 @@ const DiagnosticForm = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
-    
     if (id === 'phone') {
       const filteredValue = value.replace(/[^0-9+]/g, '');
       setFormData(prev => ({ ...prev, [id]: filteredValue }));
       return;
     }
-
     setFormData(prev => ({ ...prev, [id]: value }));
   };
 
@@ -57,29 +57,19 @@ const DiagnosticForm = () => {
     setFormData(prev => {
       let current = [...prev.currentSystems];
       let otherName = prev.otherSystemName;
-      
       if (current.includes(system)) {
-        // Si ya está seleccionado, lo quitamos
         current = current.filter(s => s !== system);
         if (system === 'Otro') otherName = '';
       } else {
-        // Si no está seleccionado, lo agregamos con lógica de exclusión
         if (system === 'Ninguno') {
-          // Si seleccionamos "Ninguno", quitamos todo lo demás
           current = ['Ninguno'];
           otherName = '';
         } else {
-          // Si seleccionamos cualquier otro, quitamos "Ninguno"
           current = current.filter(s => s !== 'Ninguno');
           current.push(system);
         }
       }
-      
-      return { 
-        ...prev, 
-        currentSystems: current,
-        otherSystemName: otherName
-      };
+      return { ...prev, currentSystems: current, otherSystemName: otherName };
     });
   };
 
@@ -100,22 +90,24 @@ const DiagnosticForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Preparamos la lista de sistemas para el envío
-      let systemsList = formData.currentSystems.map(s => {
-        if (s === 'Otro' && formData.otherSystemName) {
-          return `Otro (${formData.otherSystemName})`;
-        }
-        return s;
-      }).join(', ');
+      const systemsList = formData.currentSystems.map(s => s === 'Otro' ? `Otro (${formData.otherSystemName})` : s).join(', ');
 
-      const { error } = await supabase.functions.invoke('send-contact-email', {
-        body: { 
-          ...formData,
-          currentSystems: systemsList
-        },
+      // 1. Guardar en la base de datos (Tabla 'leads')
+      const { error: dbError } = await supabase.from('leads').insert([{
+        ...formData,
+        currentSystems: systemsList,
+        ...utms,
+        status: 'nuevo'
+      }]);
+
+      // 2. Disparar el correo electrónico
+      const { error: emailError } = await supabase.functions.invoke('send-contact-email', {
+        body: { ...formData, currentSystems: systemsList, utms },
       });
 
-      if (error) throw error;
+      if (dbError || emailError) {
+        console.warn("Error parcial en el proceso, pero continuando...");
+      }
       
       showSuccess("¡Diagnóstico solicitado con éxito!");
       navigate('/gracias');
@@ -138,10 +130,7 @@ const DiagnosticForm = () => {
     switch (step) {
       case 1: return !!(formData.name && formData.email);
       case 2: return !!(formData.company && formData.revenue && formData.employees);
-      case 3: 
-        const hasSystems = formData.currentSystems.length > 0;
-        const otherValid = !formData.currentSystems.includes('Otro') || !!formData.otherSystemName;
-        return hasSystems && otherValid && !!formData.timeline;
+      case 3: return formData.currentSystems.length > 0 && (formData.currentSystems.includes('Otro') ? !!formData.otherSystemName : true) && !!formData.timeline;
       case 4: return !!formData.challenge;
       default: return false;
     }
@@ -180,13 +169,7 @@ const DiagnosticForm = () => {
       <form onSubmit={handleSubmit} className="min-h-[350px] flex flex-col">
         <AnimatePresence mode="wait">
           {step === 1 && (
-            <motion.div
-              key="step1"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-6 flex-grow"
-            >
+            <motion.div key="step1" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6 flex-grow">
               <div className="space-y-2">
                 <Label htmlFor="name" className="text-slate-300">Nombre completo</Label>
                 <Input id="name" value={formData.name} onChange={handleInputChange} placeholder="Juan Pérez" className="bg-white/5 border-white/10 text-white h-12" required />
@@ -205,13 +188,7 @@ const DiagnosticForm = () => {
           )}
 
           {step === 2 && (
-            <motion.div
-              key="step2"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-6 flex-grow"
-            >
+            <motion.div key="step2" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6 flex-grow">
               <div className="space-y-2">
                 <Label htmlFor="company" className="text-slate-300">Nombre de la empresa</Label>
                 <Input id="company" value={formData.company} onChange={handleInputChange} placeholder="Mi Empresa S.A." className="bg-white/5 border-white/10 text-white h-12" required />
@@ -250,55 +227,26 @@ const DiagnosticForm = () => {
           )}
 
           {step === 3 && (
-            <motion.div
-              key="step3"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-6 flex-grow"
-            >
+            <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6 flex-grow">
               <div className="space-y-3">
                 <Label className="text-slate-300">Sistemas actuales (Selección múltiple)</Label>
                 <div className="grid grid-cols-2 gap-2">
                   {systemOptions.map((opt) => (
-                    <button
-                      key={opt.id}
-                      type="button"
-                      onClick={() => toggleSystem(opt.id)}
-                      className={`flex items-center justify-between px-4 py-3 rounded-xl border text-xs font-medium transition-all ${
-                        formData.currentSystems.includes(opt.id)
-                        ? 'bg-indigo-600/20 border-indigo-500 text-white'
-                        : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'
-                      }`}
-                    >
+                    <button key={opt.id} type="button" onClick={() => toggleSystem(opt.id)} className={`flex items-center justify-between px-4 py-3 rounded-xl border text-xs font-medium transition-all ${formData.currentSystems.includes(opt.id) ? 'bg-indigo-600/20 border-indigo-500 text-white' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}>
                       {opt.label}
                       {formData.currentSystems.includes(opt.id) && <Check size={14} className="text-indigo-400" />}
                     </button>
                   ))}
                 </div>
               </div>
-
               <AnimatePresence>
                 {formData.currentSystems.includes('Otro') && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    className="space-y-2 overflow-hidden"
-                  >
+                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="space-y-2 overflow-hidden">
                     <Label htmlFor="otherSystemName" className="text-slate-300">¿Qué sistema utilizas?</Label>
-                    <Input 
-                      id="otherSystemName" 
-                      value={formData.otherSystemName} 
-                      onChange={handleInputChange} 
-                      placeholder="Nombre del sistema..." 
-                      className="bg-white/5 border-white/10 text-white h-12" 
-                      required 
-                    />
+                    <Input id="otherSystemName" value={formData.otherSystemName} onChange={handleInputChange} placeholder="Nombre del sistema..." className="bg-white/5 border-white/10 text-white h-12" required />
                   </motion.div>
                 )}
               </AnimatePresence>
-
               <div className="space-y-2">
                 <Label className="text-slate-300">Plazo de implementación</Label>
                 <Select onValueChange={(v) => handleSelectChange('timeline', v)} value={formData.timeline}>
@@ -317,69 +265,41 @@ const DiagnosticForm = () => {
           )}
 
           {step === 4 && (
-            <motion.div
-              key="step4"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              className="space-y-6 flex-grow"
-            >
+            <motion.div key="step4" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6 flex-grow">
               <div className="space-y-2">
                 <Label htmlFor="challenge" className="text-slate-300">Describe tu principal cuello de botella</Label>
-                <Textarea id="challenge" value={formData.challenge} onChange={handleInputChange} placeholder="Ej: Mi inventario no coincide con mis ventas y pierdo dinero..." className="bg-white/5 border-white/10 text-white min-h-[120px]" required />
+                <Textarea id="challenge" value={formData.challenge} onChange={handleInputChange} placeholder="Ej: Mi inventario no coincide con mis ventas..." className="bg-white/5 border-white/10 text-white min-h-[120px]" required />
               </div>
-              
               <div className="flex items-start space-x-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                <Checkbox 
-                  id="subscribeNewsletter" 
-                  checked={formData.subscribeNewsletter} 
-                  onCheckedChange={(checked) => handleCheckboxChange(checked as boolean)}
-                  className="mt-1 border-white/20 data-[state=checked]:bg-indigo-600 data-[state=checked]:border-indigo-600"
-                />
+                <Checkbox id="subscribeNewsletter" checked={formData.subscribeNewsletter} onCheckedChange={(checked) => handleCheckboxChange(checked as boolean)} className="mt-1 border-white/20 data-[state=checked]:bg-indigo-600 data-[state=checked]:border-indigo-600" />
                 <div className="grid gap-1.5 leading-none">
-                  <label
-                    htmlFor="subscribeNewsletter"
-                    className="text-sm font-medium text-white leading-none cursor-pointer flex items-center gap-2"
-                  >
-                    <Mail size={14} className="text-indigo-400" />
-                    Recibir estrategias para escalar mi empresa
+                  <label htmlFor="subscribeNewsletter" className="text-sm font-medium text-white leading-none cursor-pointer flex items-center gap-2">
+                    <Mail size={14} className="text-indigo-400" /> Recibir estrategias para escalar mi empresa
                   </label>
-                  <p className="text-xs text-slate-500">
-                    Solo enviamos contenido de alto valor. Cero spam, garantizado.
-                  </p>
                 </div>
-              </div>
-
-              <div className="p-4 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex gap-3">
-                <AlertCircle className="text-indigo-400 shrink-0" size={20} />
-                <p className="text-xs text-slate-400 leading-relaxed">
-                  Al enviar este formulario, aceptas que un consultor senior analice tu caso para la sesión de diagnóstico.
-                </p>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
-        <div className="flex gap-4 mt-10">
-          {step > 1 && (
-            <Button type="button" variant="outline" onClick={prevStep} disabled={isSubmitting} className="flex-1 border-white/10 bg-white/5 hover:bg-white/10 text-white h-14 rounded-xl">
-              <ChevronLeft className="mr-2" size={18} /> Anterior
-            </Button>
-          )}
-          
-          <Button 
-            type="submit" 
-            disabled={!isStepValid() || isSubmitting}
-            className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20"
-          >
-            {isSubmitting ? (
-              <Loader2 className="animate-spin" size={24} />
-            ) : step < 4 ? (
-              <>Siguiente <ChevronRight className="ml-2" size={18} /></>
-            ) : (
-              "Solicitar Diagnóstico Senior"
+        <div className="flex flex-col gap-4 mt-10">
+          <div className="flex gap-4">
+            {step > 1 && (
+              <Button type="button" variant="outline" onClick={prevStep} disabled={isSubmitting} className="flex-1 border-white/10 bg-white/5 hover:bg-white/10 text-white h-14 rounded-xl">
+                <ChevronLeft className="mr-2" size={18} /> Anterior
+              </Button>
             )}
-          </Button>
+            <Button type="submit" disabled={!isStepValid() || isSubmitting} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20">
+              {isSubmitting ? <Loader2 className="animate-spin" size={24} /> : step < 4 ? <>Siguiente <ChevronRight className="ml-2" size={18} /></> : "Solicitar Diagnóstico Senior"}
+            </Button>
+          </div>
+          
+          {step === 4 && (
+            <div className="flex items-center justify-center gap-2 text-slate-500 text-xs">
+              <ShieldCheck size={14} className="text-emerald-500" />
+              Tus datos están protegidos por nuestra política de privacidad.
+            </div>
+          )}
         </div>
       </form>
     </div>
