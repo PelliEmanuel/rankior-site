@@ -60,11 +60,15 @@ const MexicanLocalization = () => {
 
           <div className="relative">
             <div className="absolute -inset-4 bg-indigo-500/20 blur-3xl rounded-full opacity-50" />
-            <div className="relative bg-slate-900 border border-white/10 rounded-3xl p-2 shadow-2xl overflow-hidden">
+            <div className="relative bg-slate-900 border border-white/10 rounded-3xl p-2 shadow-2xl overflow-hidden min-h-[400px]">
               <img 
                 src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1000" 
                 alt="Odoo Dashboard Mexico" 
                 className="rounded-2xl w-full h-auto opacity-80 grayscale hover:grayscale-0 transition-all duration-700"
+                loading="lazy"
+                decoding="async"
+                width="1000"
+                height="667"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl">
