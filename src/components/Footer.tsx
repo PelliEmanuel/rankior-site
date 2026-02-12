@@ -10,8 +10,8 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-2">
-            <Link to="/" className="text-2xl font-bold tracking-tighter text-white mb-6 block">
-              Rankior<span className="text-indigo-500">.</span>
+            <Link to="/" className="mb-6 block">
+              <img src="/logo.svg" alt="Rankior Logo" className="h-8 w-auto" />
             </Link>
             <p className="text-slate-400 max-w-xs">
               Expertos en implementación de Odoo ERP para el mercado mexicano. Transformamos empresas con tecnología de clase mundial.
