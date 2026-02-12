@@ -180,7 +180,9 @@ const DiagnosticForm = () => {
                   <Input id="email" type="email" value={formData.email} onChange={handleInputChange} placeholder="juan@empresa.com" className="bg-white/5 border-white/10 text-white h-12" required />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="phone" className="text-slate-300">WhatsApp / Teléfono (Opcional)</Label>
+                  <Label htmlFor="phone" className="text-slate-300">
+                    WhatsApp / Teléfono <span className="text-indigo-400/80 font-medium italic ml-1">(Opcional)</span>
+                  </Label>
                   <Input id="phone" value={formData.phone} onChange={handleInputChange} placeholder="+52..." className="bg-white/5 border-white/10 text-white h-12" />
                 </div>
               </div>
