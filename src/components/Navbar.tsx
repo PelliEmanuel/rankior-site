@@ -15,7 +15,6 @@ import {
 } from "@/components/ui/sheet";
 import DiagnosticDialog from './DiagnosticDialog';
 import SearchDialog from './SearchDialog';
-import Logo from './Logo';
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -54,8 +53,10 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-md"
     >
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link to="/" className="group">
-          <Logo className="group-hover:opacity-90 transition-opacity" />
+        <Link to="/" className="flex items-center gap-2 group">
+          <span className="text-2xl font-bold tracking-tighter text-white group-hover:text-indigo-400 transition-colors">
+            Rankior<span className="text-indigo-500">.</span>
+          </span>
         </Link>
         
         <div className="hidden md:flex items-center gap-8">
