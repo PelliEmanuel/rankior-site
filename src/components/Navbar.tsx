@@ -54,7 +54,9 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 group">
-          <img src="/logo.svg" alt="Rankior Logo" className="h-8 w-auto group-hover:opacity-80 transition-opacity" />
+          <span className="text-2xl font-bold tracking-tighter text-white group-hover:text-indigo-400 transition-colors">
+            Rankior<span className="text-indigo-500">.</span>
+          </span>
         </Link>
         
         <div className="hidden md:flex items-center gap-8">
