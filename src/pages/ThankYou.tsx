@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BackgroundElements from '@/components/BackgroundElements';
-import { CheckCircle2, ArrowRight, Calendar, Download, FileText } from 'lucide-react';
+import BookingCalendar from '@/components/BookingCalendar';
+import { CheckCircle2, Calendar, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ThankYou = () => {
@@ -14,53 +15,62 @@ const ThankYou = () => {
       <BackgroundElements />
       <Navbar />
       
-      <main className="pt-40 pb-20 flex items-center justify-center min-h-[80vh]">
-        <div className="container mx-auto px-4 text-center max-w-3xl">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
-            <CheckCircle2 className="text-emerald-500" size={48} />
-          </div>
-          
-          <h1 className="text-5xl font-bold text-white mb-6">¡Solicitud Recibida!</h1>
-          <p className="text-xl text-slate-400 mb-12 leading-relaxed">
-            Gracias por confiar en Rankior. Un consultor experto revisará tu información y se pondrá en contacto contigo en las próximas <span className="text-white font-bold">24 horas</span>.
-          </p>
-          
-          {/* Lead Magnet Section */}
-          <div className="bg-indigo-600/10 border border-indigo-500/20 rounded-[2.5rem] p-8 mb-12 text-left relative overflow-hidden">
-            <div className="absolute top-0 right-0 p-8 opacity-10">
-              <FileText size={120} className="text-indigo-400" />
+      <main className="pt-32 pb-20">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+              <CheckCircle2 className="text-emerald-500" size={40} />
             </div>
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold text-white mb-4">Mientras esperas...</h3>
-              <p className="text-slate-400 mb-6 max-w-lg">
-                Hemos preparado una guía exclusiva: <strong>"Los 5 errores críticos al implementar un ERP en México"</strong>. Descárgala ahora y empieza a optimizar tu visión.
-              </p>
-              <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-8 h-12 font-bold">
-                <Download className="mr-2" size={18} /> Descargar Guía PDF
-              </Button>
-            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">¡Datos recibidos!</h1>
+            <p className="text-xl text-slate-400 mb-8">
+              Para acelerar tu proceso, <span className="text-white font-bold">elige una fecha y hora</span> para tu sesión de diagnóstico inicial ahora mismo.
+            </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4 mb-12">
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-left">
-              <Calendar className="text-indigo-400 mb-4" size={24} />
-              <h4 className="text-white font-bold mb-2">Próximo Paso</h4>
-              <p className="text-sm text-slate-500">Recibirás un correo con opciones de horario para nuestra sesión de 30 minutos.</p>
-            </div>
-            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 text-left">
-              <ArrowRight className="text-indigo-400 mb-4" size={24} />
-              <h4 className="text-white font-bold mb-2">Casos de Éxito</h4>
-              <p className="text-sm text-slate-500">Te invitamos a ver cómo transformamos otras empresas similares a la tuya.</p>
-            </div>
-          </div>
+          <div className="max-w-5xl mx-auto">
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
+              <div className="lg:col-span-2">
+                <BookingCalendar />
+              </div>
+              
+              <div className="space-y-6">
+                <div className="p-6 rounded-3xl bg-indigo-600/10 border border-indigo-500/20">
+                  <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <Calendar className="text-indigo-400" size={20} />
+                    ¿Por qué agendar ya?
+                  </h3>
+                  <ul className="space-y-4 text-sm text-slate-400">
+                    <li className="flex gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
+                      Aseguras tu lugar en nuestra agenda semanal.
+                    </li>
+                    <li className="flex gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
+                      Recibes el enlace de Zoom/Meet al instante.
+                    </li>
+                    <li className="flex gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-1.5 shrink-0" />
+                      Empezamos a trabajar en tu roadmap antes de la llamada.
+                    </li>
+                  </ul>
+                </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button asChild size="lg" className="bg-white text-indigo-950 hover:bg-slate-100 rounded-full px-8">
-              <Link to="/casos">Ver Casos de Éxito</Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-white/10 bg-white/5 hover:bg-white/10 text-white rounded-full px-8">
-              <Link to="/">Volver al Inicio</Link>
-            </Button>
+                <div className="p-6 rounded-3xl bg-white/5 border border-white/10">
+                  <p className="text-sm text-slate-400 mb-4">
+                    ¿Prefieres que nosotros te llamemos?
+                  </p>
+                  <p className="text-xs text-slate-500 mb-6">
+                    No te preocupes, si no agendas ahora, un consultor te contactará en menos de 24 horas.
+                  </p>
+                  <Button asChild variant="link" className="text-indigo-400 p-0 h-auto hover:text-indigo-300">
+                    <Link to="/" className="flex items-center gap-2">
+                      Volver al inicio <ArrowRight size={14} />
+                    </Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </main>
