@@ -1,38 +1,6 @@
-"use client";
+import { Mail, MessageCircle, ShieldCheck } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import ContactForm from "@/components/ContactForm";
 
-import React from 'react';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import BackgroundElements from '@/components/BackgroundElements';
-import ContactSection from '@/components/ContactSection';
-import WhatsAppButton from '@/components/WhatsAppButton';
-import ScrollReveal from '@/components/ScrollReveal';
-
-const Contact = () => {
-  return (
-    <div className="min-h-screen bg-[#020617] text-slate-200">
-      <BackgroundElements />
-      <Navbar />
-      <main className="pt-32 pb-20">
-        <div className="container mx-auto px-4 mb-12">
-          <ScrollReveal>
-            <div className="max-w-3xl">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Hablemos de tu <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">futuro</span>
-              </h1>
-              <p className="text-xl text-slate-400 leading-relaxed">
-                Estamos aquí para resolver tus dudas y ayudarte a trazar el camino hacia una operación más eficiente.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
-        
-        <ContactSection />
-      </main>
-      <Footer />
-      <WhatsAppButton />
-    </div>
-  );
-};
-
-export default Contact;
+export default function Contact() { return <div className="min-h-screen"><Navbar/><main className="pt-[76px]"><section className="bg-[#EAF7FB] py-20 lg:py-28"><div className="container-page grid gap-12 lg:grid-cols-[.85fr_1.15fr] lg:items-start"><div><p className="eyebrow">Contacto</p><h1 className="mt-5 text-5xl font-black leading-none tracking-[-.06em] sm:text-6xl">Hablemos de lo que quieres construir.</h1><p className="mt-7 max-w-xl text-lg leading-8 text-[#526174]">Cuéntanos qué quieres lanzar, migrar o mejorar. Te ayudaremos a identificar el siguiente paso para tu ecommerce.</p><div className="mt-10 space-y-5"><a href="mailto:hola@rankior.com" className="flex items-center gap-4 text-sm font-bold"><span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#007EA8]"><Mail size={19}/></span>hola@rankior.com</a><div className="flex items-center gap-4 text-sm font-bold"><span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#007EA8]"><MessageCircle size={19}/></span>Respuesta clara, sin compromisos prefabricados</div><div className="flex items-center gap-4 text-sm font-bold"><span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#007EA8]"><ShieldCheck size={19}/></span>Tratamos tus datos con cuidado</div></div></div><ContactForm/></div></section></main><Footer/></div>; }

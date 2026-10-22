@@ -3,67 +3,17 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-
-    --radius: 1rem;
-  }
-
-  html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-[#020617] text-slate-200 antialiased;
-  }
-
-  /* Custom Scrollbar */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: #020617;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #1e293b;
-    border-radius: 5px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
-  }
+  :root { --background: 210 33% 98%; --foreground: 216 22% 11%; --border: 214 24% 90%; --radius: 1rem; }
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-[#F7FAFC] text-[#101820] antialiased; }
+  ::selection { background: #95e9c6; color: #101820; }
 }
-
-@layer base {
-  * {
-    @apply border-border;
-  }
+@layer components {
+  .container-page { @apply mx-auto max-w-7xl px-5 lg:px-8; }
+  .eyebrow { @apply text-xs font-black uppercase tracking-[0.2em] text-[#007EA8]; }
+  .section-title { @apply text-3xl font-black leading-[1.08] tracking-[-0.05em] text-[#101820] sm:text-4xl lg:text-5xl; }
+  .soft-card { @apply rounded-[1.5rem] border border-slate-200 bg-white shadow-[0_18px_55px_rgba(16,24,32,0.06)]; }
+  .grid-pattern { background-image: linear-gradient(rgba(0,126,168,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,126,168,.06) 1px, transparent 1px); background-size: 32px 32px; }
 }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }

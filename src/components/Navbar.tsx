@@ -1,144 +1,34 @@
-"use client";
+import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 
-import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
-import { Menu, Search } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
-import DiagnosticDialog from './DiagnosticDialog';
-import SearchDialog from './SearchDialog';
+const links = [
+  { label: "Inicio", to: "/" },
+  { label: "Servicios", to: "/servicios" },
+  { label: "Nuestro proceso", to: "/#proceso" },
+  { label: "Recursos", to: "/recursos" },
+  { label: "Nosotros", to: "/nosotros" },
+  { label: "Contacto", to: "/contacto" },
+];
 
-const Navbar = () => {
-  const [isVisible, setIsVisible] = useState(true);
-  const lastScrollY = useRef(0);
-
-  useEffect(() => {
-    const controlNavbar = () => {
-      const currentScrollY = window.scrollY;
-      const shouldBeVisible = !(currentScrollY > lastScrollY.current && currentScrollY > 100);
-      
-      setIsVisible(prev => {
-        if (prev !== shouldBeVisible) return shouldBeVisible;
-        return prev;
-      });
-      
-      lastScrollY.current = currentScrollY;
-    };
-
-    window.addEventListener('scroll', controlNavbar);
-    return () => window.removeEventListener('scroll', controlNavbar);
-  }, []);
-
-  const navLinks = [
-    { name: "Servicios", href: "/servicios" },
-    { name: "Casos", href: "/casos" },
-    { name: "Nosotros", href: "/nosotros" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contacto", href: "/contacto" },
-  ];
-
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
   return (
-    <motion.nav 
-      initial={{ y: 0 }}
-      animate={{ y: isVisible ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#020617]/80 backdrop-blur-md"
-    >
-      <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="text-2xl font-bold tracking-tighter text-white group-hover:text-indigo-400 transition-colors">
-            Rankior<span className="text-indigo-500">.</span>
-          </span>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/70 bg-white/90 backdrop-blur-xl">
+      <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 lg:px-8">
+        <Link to="/" className="flex items-center gap-2 text-xl font-black tracking-[-0.06em] text-[#101820]" onClick={() => setOpen(false)}>
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#007EA8] text-sm text-white">R</span>
+          Rankior<span className="text-[#007EA8]">.</span>
         </Link>
-        
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <NavLink 
-              key={link.name}
-              to={link.href} 
-              className={({ isActive }) => cn(
-                "text-sm font-medium transition-colors relative py-2",
-                isActive ? "text-white" : "text-slate-400 hover:text-white"
-              )}
-            >
-              {({ isActive }) => (
-                <>
-                  {link.name}
-                  {isActive && (
-                    <motion.span 
-                      layoutId="nav-underline"
-                      className="absolute bottom-0 left-0 w-full h-0.5 bg-indigo-500 rounded-full" 
-                    />
-                  )}
-                </>
-              )}
-            </NavLink>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-2 sm:gap-4">
-          <SearchDialog>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              className="text-slate-400 hover:text-white hover:bg-white/5 rounded-full"
-              aria-label="Abrir buscador"
-            >
-              <Search size={20} />
-            </Button>
-          </SearchDialog>
-
-          <DiagnosticDialog>
-            <Button className="hidden sm:flex bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 transition-all hover:scale-105 active:scale-95">
-              Agendar diagnóstico
-            </Button>
-          </DiagnosticDialog>
-          
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-white" aria-label="Abrir menú de navegación">
-                  <Menu size={24} />
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="bg-[#020617] border-white/10 text-white">
-                <SheetHeader>
-                  <SheetTitle className="text-white text-left">Menú</SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-6 mt-10">
-                  {navLinks.map((link) => (
-                    <NavLink 
-                      key={link.name}
-                      to={link.href} 
-                      className={({ isActive }) => cn(
-                        "text-xl font-medium transition-colors",
-                        isActive ? "text-indigo-400" : "text-slate-300 hover:text-white"
-                      )}
-                    >
-                      {link.name}
-                    </NavLink>
-                  ))}
-                  <DiagnosticDialog>
-                    <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-full py-6 text-lg">
-                      Agendar diagnóstico
-                    </Button>
-                  </DiagnosticDialog>
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
-        </div>
+        <nav className="hidden items-center gap-7 lg:flex">
+          {links.map((link) => <NavLink key={link.label} to={link.to} className="text-sm font-semibold text-[#526174] transition hover:text-[#007EA8]">{link.label}</NavLink>)}
+        </nav>
+        <Link to="/contacto" className="hidden items-center gap-2 rounded-full bg-[#007EA8] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#007EA8]/20 transition hover:-translate-y-0.5 hover:bg-[#006d91] sm:flex">
+          Hablemos de tu proyecto <ArrowUpRight size={16} />
+        </Link>
+        <button className="rounded-xl p-2 text-[#101820] lg:hidden" onClick={() => setOpen(!open)} aria-label={open ? "Cerrar menú" : "Abrir menú"}>{open ? <X /> : <Menu />}</button>
       </div>
-    </motion.nav>
+      {open && <div className="border-t border-slate-200 bg-white px-5 py-5 lg:hidden"><nav className="flex flex-col gap-4">{links.map((link) => <NavLink key={link.label} to={link.to} onClick={() => setOpen(false)} className="text-base font-semibold text-[#526174]">{link.label}</NavLink>)}<Link to="/contacto" onClick={() => setOpen(false)} className="mt-2 rounded-full bg-[#007EA8] px-5 py-3 text-center text-sm font-bold text-white">Hablemos de tu proyecto</Link></nav></div>}
+    </header>
   );
-};
-
-export default Navbar;
+}
