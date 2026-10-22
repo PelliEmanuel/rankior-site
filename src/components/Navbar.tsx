@@ -24,11 +24,11 @@ export default function Navbar() {
           {links.map((link) => <NavLink key={link.label} to={link.to} className="text-sm font-semibold text-[#526174] transition hover:text-[#007EA8]">{link.label}</NavLink>)}
         </nav>
         <Link to="/contacto" className="hidden items-center gap-2 rounded-full bg-[#007EA8] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-[#007EA8]/20 transition hover:-translate-y-0.5 hover:bg-[#006d91] sm:flex">
-          Hablemos de tu proyecto <ArrowUpRight size={16} />
+          Solicitar evaluación inicial <ArrowUpRight size={16} />
         </Link>
         <button className="rounded-xl p-2 text-[#101820] lg:hidden" onClick={() => setOpen(!open)} aria-label={open ? "Cerrar menú" : "Abrir menú"}>{open ? <X /> : <Menu />}</button>
       </div>
-      {open && <div className="border-t border-slate-200 bg-white px-5 py-5 lg:hidden"><nav className="flex flex-col gap-4">{links.map((link) => <NavLink key={link.label} to={link.to} onClick={() => setOpen(false)} className="text-base font-semibold text-[#526174]">{link.label}</NavLink>)}<Link to="/contacto" onClick={() => setOpen(false)} className="mt-2 rounded-full bg-[#007EA8] px-5 py-3 text-center text-sm font-bold text-white">Hablemos de tu proyecto</Link></nav></div>}
+      {open && <div className="border-t border-slate-200 bg-white px-5 py-5 lg:hidden"><nav className="flex flex-col gap-4">{links.map((link) => <NavLink key={link.label} to={link.to} onClick={() => setOpen(false)} className="text-base font-semibold text-[#526174]">{link.label}</NavLink>)}<Link to="/contacto" onClick={() => setOpen(false)} className="mt-2 rounded-full bg-[#007EA8] px-5 py-3 text-center text-sm font-bold text-white">Solicitar evaluación inicial</Link></nav></div>}
     </header>
   );
 }
