@@ -75,7 +75,7 @@ const ResourceCenter = ({ posts = defaultPosts }: ResourceCenterProps) => {
                     alt={post.title} 
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-indigo-600 text-white text-xs font-bold">
+                  <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-brand-600 text-white text-xs font-bold">
                     {post.category}
                   </div>
                 </div>
@@ -84,13 +84,13 @@ const ResourceCenter = ({ posts = defaultPosts }: ResourceCenterProps) => {
                     <span className="flex items-center gap-1"><Calendar size={14} /> {post.date}</span>
                     <span className="flex items-center gap-1"><User size={14} /> {post.author}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white group-hover:text-brand-400 transition-colors">
                     {post.title}
                   </h3>
                   <p className="text-slate-400 text-sm leading-relaxed line-clamp-2">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center gap-2 text-indigo-400 font-bold text-sm group-hover:gap-3 transition-all">
+                  <div className="flex items-center gap-2 text-brand-400 font-bold text-sm group-hover:gap-3 transition-all">
                     Leer más <ArrowRight size={16} />
                   </div>
                 </div>

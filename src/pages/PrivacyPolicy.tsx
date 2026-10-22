@@ -8,18 +8,18 @@ import ScrollReveal from '@/components/ScrollReveal';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200">
+    <div className="min-h-screen bg-ink text-slate-200">
       <BackgroundElements />
       <Navbar />
       
-      <main className="pt-32 pb-20">
+      <main id="contenido-principal" tabIndex={-1} className="pt-32 pb-20">
         <div className="container mx-auto px-4 max-w-4xl">
           <ScrollReveal>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Aviso de <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Privacidad</span>
+              Aviso de <span className="text-brand-300">Privacidad</span>
             </h1>
             
-            <div className="prose prose-invert prose-indigo max-w-none space-y-8 text-slate-400">
+            <div className="prose prose-invert prose-slate max-w-none space-y-8 text-slate-400">
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Compromiso de Confidencialidad</h2>
                 <p className="leading-relaxed">
@@ -52,7 +52,7 @@ const PrivacyPolicy = () => {
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">Tus Derechos (ARCO)</h2>
                 <p className="leading-relaxed">
-                  En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), tienes derecho a acceder, rectificar, cancelar u oponerte al tratamiento de tus datos en cualquier momento enviando un correo a <span className="text-indigo-400">privacidad@rankior.com</span>.
+                  En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), tienes derecho a acceder, rectificar, cancelar u oponerte al tratamiento de tus datos en cualquier momento enviando un correo a <span className="text-brand-400">privacidad@rankior.com</span>.
                 </p>
               </section>
             </div>

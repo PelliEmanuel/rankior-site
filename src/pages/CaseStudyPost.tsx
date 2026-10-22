@@ -70,24 +70,24 @@ const CaseStudyPost = () => {
     fetchStory();
   }, [id]);
 
-  if (loading) return <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">Cargando...</div>;
-  if (!story) return <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">Caso no encontrado</div>;
+  if (loading) return <div className="min-h-screen bg-ink flex items-center justify-center text-white">Cargando...</div>;
+  if (!story) return <div className="min-h-screen bg-ink flex items-center justify-center text-white">Caso no encontrado</div>;
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200">
+    <div className="min-h-screen bg-ink text-slate-200">
       <BackgroundElements />
       <Navbar />
       
-      <main className="pt-32 pb-20">
+      <main id="contenido-principal" tabIndex={-1} className="pt-32 pb-20">
         <div className="container mx-auto px-4">
-          <Link to="/casos" className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-8 transition-colors">
+          <Link to="/casos" className="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 mb-8 transition-colors">
             <ArrowLeft size={20} /> Volver a casos de éxito
           </Link>
 
           <div className="grid lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2 space-y-12">
               <header className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-semibold uppercase tracking-wider">
                   {story.industry}
                 </div>
                 <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
@@ -106,7 +106,7 @@ const CaseStudyPost = () => {
                 />
               </div>
 
-              <div className="prose prose-invert prose-indigo max-w-none">
+              <div className="prose prose-invert prose-slate max-w-none">
                 <h2 className="text-2xl font-bold text-white">El Reto</h2>
                 <p className="text-slate-400 leading-relaxed">
                   {story.challenge}
@@ -137,13 +137,13 @@ const CaseStudyPost = () => {
             </div>
 
             <aside className="space-y-8">
-              <div className="p-8 rounded-3xl bg-indigo-600/10 border border-indigo-500/20 sticky top-32">
+              <div className="p-8 rounded-3xl bg-brand-600/10 border border-brand-500/20 sticky top-32">
                 <h3 className="text-xl font-bold text-white mb-6">Resultados Clave</h3>
                 <div className="space-y-6">
                   {story.metrics.map((metric: any, i: number) => (
                     <div key={i} className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-indigo-500/20 flex items-center justify-center shrink-0">
-                        <metric.icon className="text-indigo-400" size={24} />
+                      <div className="w-12 h-12 rounded-xl bg-brand-500/20 flex items-center justify-center shrink-0">
+                        <metric.icon className="text-brand-400" size={24} />
                       </div>
                       <div>
                         <p className="text-2xl font-bold text-white">{metric.value}</p>
@@ -158,7 +158,7 @@ const CaseStudyPost = () => {
                     ¿Quieres resultados similares para tu empresa?
                   </p>
                   <DiagnosticDialog>
-                    <Button className="w-full bg-indigo-600 hover:bg-indigo-700 text-white h-12 rounded-xl font-bold">
+                    <Button className="w-full bg-brand-600 hover:bg-brand-700 text-white h-12 rounded-xl font-bold">
                       Agendar diagnóstico
                     </Button>
                   </DiagnosticDialog>

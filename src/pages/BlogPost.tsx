@@ -27,22 +27,22 @@ const BlogPost = () => {
     fetchPost();
   }, [id]);
 
-  if (loading) return <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">Cargando...</div>;
-  if (!post && !loading) return <div className="min-h-screen bg-[#020617] flex items-center justify-center text-white">Post no encontrado</div>;
+  if (loading) return <div className="min-h-screen bg-ink flex items-center justify-center text-white">Cargando...</div>;
+  if (!post && !loading) return <div className="min-h-screen bg-ink flex items-center justify-center text-white">Post no encontrado</div>;
 
   const { title, excerpt, content, author, featuredImage } = post.fields;
   const date = new Date(post.sys.createdAt).toLocaleDateString('es-MX', { month: 'long', day: 'numeric', year: 'numeric' });
   const imageUrl = featuredImage?.fields?.file?.url || "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=1200";
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200">
+    <div className="min-h-screen bg-ink text-slate-200">
       <BackgroundElements />
       <ReadingProgress />
       <Navbar />
       
-      <main className="pt-32 pb-20">
+      <main id="contenido-principal" tabIndex={-1} className="pt-32 pb-20">
         <div className="container mx-auto px-4 max-w-4xl">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-indigo-400 hover:text-indigo-300 mb-8 transition-colors">
+          <Link to="/blog" className="inline-flex items-center gap-2 text-brand-400 hover:text-brand-300 mb-8 transition-colors">
             <ArrowLeft size={20} /> Volver al blog
           </Link>
 
@@ -68,7 +68,7 @@ const BlogPost = () => {
               />
             </div>
 
-            <div className="prose prose-invert prose-indigo max-w-none">
+            <div className="prose prose-invert prose-slate max-w-none">
               <div className="text-slate-300 leading-relaxed whitespace-pre-wrap">
                 {typeof content === 'string' ? content : "Contenido disponible en el CMS."}
               </div>

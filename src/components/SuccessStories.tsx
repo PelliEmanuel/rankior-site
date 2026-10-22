@@ -65,7 +65,7 @@ const SuccessStories = ({ stories = defaultStories }: SuccessStoriesProps) => {
           </div>
           <Link 
             to="/casos" 
-            className="group flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors"
+            className="group flex items-center gap-2 text-brand-400 font-semibold hover:text-brand-300 transition-colors"
           >
             Ver todos los casos <ArrowUpRight size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </Link>
@@ -87,11 +87,11 @@ const SuccessStories = ({ stories = defaultStories }: SuccessStoriesProps) => {
                     alt={story.company} 
                     className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-transparent to-transparent md:block hidden" />
+                  <div className="absolute inset-0 bg-ink/10 md:block hidden" />
                 </div>
                 <div className="p-8 space-y-6">
                   <div>
-                    <span className="text-indigo-400 text-xs font-bold uppercase tracking-widest">{story.industry}</span>
+                    <span className="text-brand-400 text-xs font-bold uppercase tracking-widest">{story.industry}</span>
                     <h3 className="text-2xl font-bold text-white mt-2">{story.company}</h3>
                   </div>
                   <p className="text-slate-400 text-sm leading-relaxed">
@@ -100,7 +100,7 @@ const SuccessStories = ({ stories = defaultStories }: SuccessStoriesProps) => {
                   <div className="grid grid-cols-2 gap-4 pt-4 border-t border-white/5">
                     {story.metrics.map((metric, j) => (
                       <div key={j} className="space-y-1">
-                        <div className="flex items-center gap-2 text-indigo-400">
+                        <div className="flex items-center gap-2 text-brand-400">
                           <metric.icon size={16} />
                           <span className="text-xl font-bold text-white">{metric.value}</span>
                         </div>

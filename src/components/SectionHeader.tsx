@@ -25,7 +25,7 @@ const SectionHeader = ({
       className
     )}>
       {subtitle && (
-        <p className="text-indigo-400 font-semibold uppercase tracking-widest text-sm mb-4">
+        <p className="text-brand-400 font-semibold uppercase tracking-widest text-sm mb-4">
           {subtitle}
         </p>
       )}

@@ -3,17 +3,55 @@
 @tailwind utilities;
 
 @layer base {
-  :root { --background: 210 33% 98%; --foreground: 216 22% 11%; --border: 214 24% 90%; --radius: 1rem; }
+  :root {
+    --brand-50: 234 247 251;
+    --brand-100: 211 237 246;
+    --brand-200: 174 220 236;
+    --brand-300: 133 207 229;
+    --brand-400: 101 195 222;
+    --brand-500: 0 139 181;
+    --brand-600: 0 126 168;
+    --brand-700: 0 104 140;
+    --brand-800: 0 83 112;
+    --brand-900: 0 63 87;
+    --brand-950: 16 24 32;
+    --rankior-ink: 16 24 32;
+    --rankior-secondary: 82 97 116;
+    --rankior-canvas: 247 250 252;
+    --rankior-mint: 149 233 198;
+    --background: 204 45% 98%;
+    --foreground: 210 33% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 33% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 33% 9%;
+    --primary: 195 100% 33%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 194 68% 95%;
+    --secondary-foreground: 195 100% 27%;
+    --muted: 204 35% 96%;
+    --muted-foreground: 214 17% 39%;
+    --accent: 155 66% 90%;
+    --accent-foreground: 210 33% 9%;
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 24% 88%;
+    --input: 210 24% 84%;
+    --ring: 195 100% 33%;
+    --radius: 1rem;
+  }
   * { @apply border-border; }
-  html { scroll-behavior: smooth; }
-  body { @apply bg-[#F7FAFC] text-[#101820] antialiased; }
-  ::selection { background: #95e9c6; color: #101820; }
+  html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+  body { @apply bg-canvas text-ink antialiased; }
+  ::selection { @apply bg-mint text-ink; }
+  :focus-visible { outline: 2px solid rgb(var(--brand-500)); outline-offset: 4px; }
+  button, a, input, select, textarea { -webkit-tap-highlight-color: transparent; }
 }
 @layer components {
   .container-page { @apply mx-auto max-w-7xl px-5 lg:px-8; }
-  .eyebrow { @apply text-xs font-black uppercase tracking-[0.2em] text-[#007EA8]; }
-  .section-title { @apply text-3xl font-black leading-[1.08] tracking-[-0.05em] text-[#101820] sm:text-4xl lg:text-5xl; }
+  .eyebrow { @apply text-xs font-black uppercase tracking-[0.2em] text-brand-600; }
+  .section-title { @apply text-3xl font-black leading-[1.08] tracking-[-0.05em] text-ink sm:text-4xl lg:text-5xl; }
   .soft-card { @apply rounded-[1.5rem] border border-slate-200 bg-white shadow-[0_18px_55px_rgba(16,24,32,0.06)]; }
-  .grid-pattern { background-image: linear-gradient(rgba(0,126,168,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,126,168,.06) 1px, transparent 1px); background-size: 32px 32px; }
+  .grid-pattern { background-image: linear-gradient(rgb(var(--brand-600) / .06) 1px, transparent 1px), linear-gradient(90deg, rgb(var(--brand-600) / .06) 1px, transparent 1px); background-size: 32px 32px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; } }

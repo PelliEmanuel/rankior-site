@@ -20,7 +20,7 @@ const BackgroundElements = () => {
           repeat: Infinity,
           ease: "easeInOut"
         }}
-        className="absolute w-[60vw] h-[60vw] bg-indigo-600/20 blur-[120px] rounded-full will-change-transform"
+        className="absolute w-[60vw] h-[60vw] bg-brand-600/20 blur-[120px] rounded-full will-change-transform"
         style={{ 
           top: 0, 
           left: 0, 
@@ -41,7 +41,7 @@ const BackgroundElements = () => {
           ease: "easeInOut",
           delay: 2
         }}
-        className="absolute w-[50vw] h-[50vw] bg-blue-500/10 blur-[100px] rounded-full will-change-transform"
+        className="absolute w-[50vw] h-[50vw] bg-brand-500/10 blur-[100px] rounded-full will-change-transform"
         style={{ 
           bottom: 0, 
           right: 0, 

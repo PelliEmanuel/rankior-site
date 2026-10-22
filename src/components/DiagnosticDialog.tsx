@@ -20,7 +20,7 @@ const DiagnosticDialog = ({ children }: DiagnosticDialogProps) => {
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px] bg-[#020617] border-white/10 p-0 overflow-hidden">
+      <DialogContent className="sm:max-w-[600px] bg-ink border-white/10 p-0 overflow-hidden">
         <div className="p-8">
           <DialogHeader className="mb-6">
             <DialogTitle className="text-3xl font-bold text-white">Agendar Diagnóstico</DialogTitle>

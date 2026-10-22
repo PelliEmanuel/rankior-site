@@ -8,18 +8,18 @@ import ScrollReveal from '@/components/ScrollReveal';
 
 const TermsOfService = () => {
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200">
+    <div className="min-h-screen bg-ink text-slate-200">
       <BackgroundElements />
       <Navbar />
       
-      <main className="pt-32 pb-20">
+      <main id="contenido-principal" tabIndex={-1} className="pt-32 pb-20">
         <div className="container mx-auto px-4 max-w-4xl">
           <ScrollReveal>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Términos de <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">Servicio</span>
+              Términos de <span className="text-brand-300">Servicio</span>
             </h1>
             
-            <div className="prose prose-invert prose-indigo max-w-none space-y-8 text-slate-400">
+            <div className="prose prose-invert prose-slate max-w-none space-y-8 text-slate-400">
               <section>
                 <h2 className="text-2xl font-bold text-white mb-4">1. Aceptación de Términos</h2>
                 <p className="leading-relaxed">

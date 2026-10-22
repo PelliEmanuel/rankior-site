@@ -153,12 +153,12 @@ const DiagnosticForm = () => {
           <div key={i} className="flex flex-col items-center gap-2">
             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-colors ${
               step > i + 1 ? 'bg-emerald-500 text-white' : 
-              step === i + 1 ? 'bg-indigo-600 text-white' : 'bg-slate-800 text-slate-500'
+              step === i + 1 ? 'bg-brand-600 text-white' : 'bg-slate-800 text-slate-500'
             }`}>
               {step > i + 1 ? <CheckCircle2 size={16} /> : i + 1}
             </div>
             <span className={`text-[10px] uppercase tracking-widest font-bold hidden sm:block ${
-              step === i + 1 ? 'text-indigo-400' : 'text-slate-500'
+              step === i + 1 ? 'text-brand-400' : 'text-slate-500'
             }`}>
               {s.title}
             </span>
@@ -181,7 +181,7 @@ const DiagnosticForm = () => {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="phone" className="text-slate-300">
-                    WhatsApp / Teléfono <span className="text-indigo-400/80 font-medium italic ml-1">(Opcional)</span>
+                    WhatsApp / Teléfono <span className="text-brand-400/80 font-medium italic ml-1">(Opcional)</span>
                   </Label>
                   <Input id="phone" value={formData.phone} onChange={handleInputChange} placeholder="+52..." className="bg-white/5 border-white/10 text-white h-12" />
                 </div>
@@ -234,9 +234,9 @@ const DiagnosticForm = () => {
                 <Label className="text-slate-300">Sistemas actuales (Selección múltiple)</Label>
                 <div className="grid grid-cols-2 gap-2">
                   {systemOptions.map((opt) => (
-                    <button key={opt.id} type="button" onClick={() => toggleSystem(opt.id)} className={`flex items-center justify-between px-4 py-3 rounded-xl border text-xs font-medium transition-all ${formData.currentSystems.includes(opt.id) ? 'bg-indigo-600/20 border-indigo-500 text-white' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}>
+                    <button key={opt.id} type="button" onClick={() => toggleSystem(opt.id)} className={`flex items-center justify-between px-4 py-3 rounded-xl border text-xs font-medium transition-all ${formData.currentSystems.includes(opt.id) ? 'bg-brand-600/20 border-brand-500 text-white' : 'bg-white/5 border-white/10 text-slate-400 hover:bg-white/10'}`}>
                       {opt.label}
-                      {formData.currentSystems.includes(opt.id) && <Check size={14} className="text-indigo-400" />}
+                      {formData.currentSystems.includes(opt.id) && <Check size={14} className="text-brand-400" />}
                     </button>
                   ))}
                 </div>
@@ -273,10 +273,10 @@ const DiagnosticForm = () => {
                 <Textarea id="challenge" value={formData.challenge} onChange={handleInputChange} placeholder="Ej: Mi inventario no coincide con mis ventas..." className="bg-white/5 border-white/10 text-white min-h-[120px]" required />
               </div>
               <div className="flex items-start space-x-3 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors">
-                <Checkbox id="subscribeNewsletter" checked={formData.subscribeNewsletter} onCheckedChange={(checked) => handleCheckboxChange(checked as boolean)} className="mt-1 border-white/20 data-[state=checked]:bg-indigo-600 data-[state=checked]:border-indigo-600" />
+                <Checkbox id="subscribeNewsletter" checked={formData.subscribeNewsletter} onCheckedChange={(checked) => handleCheckboxChange(checked as boolean)} className="mt-1 border-white/20 data-[state=checked]:bg-brand-600 data-[state=checked]:border-brand-600" />
                 <div className="grid gap-1.5 leading-none">
                   <label htmlFor="subscribeNewsletter" className="text-sm font-medium text-white leading-none cursor-pointer flex items-center gap-2">
-                    <Mail size={14} className="text-indigo-400" /> Recibir estrategias para escalar mi empresa
+                    <Mail size={14} className="text-brand-400" /> Recibir estrategias para escalar mi empresa
                   </label>
                 </div>
               </div>
@@ -291,7 +291,7 @@ const DiagnosticForm = () => {
                 <ChevronLeft className="mr-2" size={18} /> Anterior
               </Button>
             )}
-            <Button type="submit" disabled={!isStepValid() || isSubmitting} className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-indigo-500/20">
+            <Button type="submit" disabled={!isStepValid() || isSubmitting} className="flex-1 bg-brand-600 hover:bg-brand-700 text-white h-14 rounded-xl font-bold shadow-lg shadow-brand-500/20">
               {isSubmitting ? <Loader2 className="animate-spin" size={24} /> : step < 4 ? <>Siguiente <ChevronRight className="ml-2" size={18} /></> : "Solicitar Diagnóstico Senior"}
             </Button>
           </div>

@@ -84,15 +84,15 @@ const Blog = () => {
   }, [activeCategory, posts]);
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200">
+    <div className="min-h-screen bg-ink text-slate-200">
       <BackgroundElements />
       <Navbar />
-      <main className="pt-32 pb-20">
+      <main id="contenido-principal" tabIndex={-1} className="pt-32 pb-20">
         <div className="container mx-auto px-4 mb-20">
           <ScrollReveal>
             <div className="max-w-3xl">
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-                Conocimiento para <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400">escalar</span>
+                Conocimiento para <span className="text-brand-300">escalar</span>
               </h1>
               <p className="text-xl text-slate-400 leading-relaxed">
                 Guías, análisis y noticias sobre Odoo, el SAT y las mejores prácticas empresariales en México.
@@ -109,7 +109,7 @@ const Blog = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`px-6 py-2 rounded-full border transition-all ${
                   activeCategory === cat 
-                  ? 'bg-indigo-600 border-indigo-600 text-white shadow-lg shadow-indigo-500/20' 
+                  ? 'bg-brand-600 border-brand-600 text-white shadow-lg shadow-brand-500/20' 
                   : 'border-white/10 bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white'
                 }`}
               >

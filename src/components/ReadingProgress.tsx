@@ -13,7 +13,7 @@ const ReadingProgress = () => {
 
   return (
     <motion.div
-      className="fixed top-20 left-0 right-0 h-1 bg-indigo-500 origin-left z-[60]"
+      className="fixed top-20 left-0 right-0 h-1 bg-brand-500 origin-left z-[60]"
       style={{ scaleX }}
     />
   );

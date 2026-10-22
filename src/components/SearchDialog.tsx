@@ -38,7 +38,7 @@ const SearchDialog = ({ children }: { children: React.ReactNode }) => {
       <div onClick={() => setOpen(true)}>{children}</div>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput placeholder="Escribe para buscar..." />
-        <CommandList className="bg-[#020617] text-slate-200 border-white/10">
+        <CommandList className="bg-ink text-slate-200 border-white/10">
           <CommandEmpty>No se encontraron resultados.</CommandEmpty>
           <CommandGroup heading="Navegación">
             <CommandItem onSelect={() => runCommand(() => navigate('/servicios'))}>
