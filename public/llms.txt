@@ -1,0 +1,23 @@
+# Rankior
+
+> Rankior is a Shopify and ecommerce growth agency based in Mexico. We combine ecommerce design, Shopify development, SEO, conversion optimization, and compatible business integrations.
+
+## Services
+
+- [Shopify development](https://rankior.com/servicios/shopify): Design, catalog, payments, shipping, and launch preparation.
+- [Shopify migration](https://rankior.com/servicios/migracion-shopify): Migration planning, data, navigation, SEO, and agreed redirects.
+- [Ecommerce optimization](https://rankior.com/servicios/optimizacion-ecommerce): SEO, analytics, performance, and conversion experience.
+- [Integrations](https://rankior.com/servicios/integraciones): Evaluation and implementation of compatible ERP, inventory, CRM, and automation connections.
+
+## Company
+
+- [About Rankior](https://rankior.com/nosotros): Our philosophy and approach.
+- [Contact](https://rankior.com/contacto): Discuss a business project.
+- [Resources](https://rankior.com/recursos): Editorial topics and educational resources as they become available.
+- [Privacy](https://rankior.com/privacidad): Personal data handling policy.
+
+## Important context
+
+The Nómada and Botánica storefronts are fictional design demonstrations, not client case studies. Illustrated indicators are not measured client results. Rankior does not claim official Shopify partner credentials or guaranteed growth percentages. Services are scoped individually; ERP integrations are optional and subject to technical feasibility.
+
+Rankior currently publishes no public agent, MCP server, or automated transaction API. The discovery catalog therefore has no capability entries.

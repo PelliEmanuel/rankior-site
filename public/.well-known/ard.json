@@ -1,0 +1,9 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Rankior",
+    "documentationUrl": "https://rankior.com/llms.txt",
+    "logoUrl": "https://rankior.com/favicon.svg"
+  },
+  "entries": []
+}

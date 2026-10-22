@@ -2,8 +2,9 @@ import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDownRight, Check, Layers3, Smartphone } from "lucide-react";
 import EcommerceMockup from "./EcommerceMockup";
+import { useCinematicMotion } from "@/hooks/use-cinematic-motion";
 
-export default function ImmersiveExperience() {
+function AnimatedExperience() {
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
@@ -15,7 +16,6 @@ export default function ImmersiveExperience() {
   const layerY = useTransform(scrollYProgress, [0, .65, 1], [0, -65, -90]);
   const firstOpacity = useTransform(scrollYProgress, [0, .32, .48, 1], [1, 1, 0, 0]);
   const secondOpacity = useTransform(scrollYProgress, [0, .42, .58, 1], [0, 0, 1, 1]);
-  const progress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   return <section ref={ref} id="experiencia" aria-labelledby="experience-title" className={`relative scroll-mt-[76px] bg-ink text-white ${reduced ? "" : "lg:h-[240svh]"}`}>
     <div className={`${reduced ? "" : "lg:sticky lg:top-[76px] lg:flex lg:min-h-[680px] lg:h-[calc(100svh-76px)] lg:flex-col lg:justify-center"} overflow-clip py-20 lg:py-12`}>
       <div className="container-page relative w-full">
@@ -33,14 +33,23 @@ export default function ImmersiveExperience() {
             <motion.div className="cinema-stage relative" style={reduced ? {} : { rotateX, rotateY, scale, transformStyle: "preserve-3d" }}>
               <div className="absolute inset-0 rounded-2xl border border-brand-400/25 bg-brand-900/50" style={{ transform: "translateZ(-60px) translate(18px, 18px)" }} aria-hidden="true"/>
               <div className="relative rounded-2xl border-[5px] border-slate-600 bg-slate-600 shadow-[0_35px_75px_rgba(0,0,0,.28)]"><EcommerceMockup concept="botanica"/></div>
-              <motion.div style={reduced ? {} : { x: phoneX, y: phoneY, translateZ: 90 }} className="cinema-phone absolute -bottom-12 -right-6 w-[110px] sm:w-[160px] lg:w-[175px]"><EcommerceMockup concept="botanica" mobile/></motion.div>
+              <motion.div style={reduced ? {} : { x: phoneX, y: phoneY, translateZ: 90 }} className="cinema-phone absolute -bottom-12 -right-6 w-[145px] sm:w-[195px] lg:w-[220px]"><EcommerceMockup concept="botanica" mobile/></motion.div>
               <motion.div style={reduced ? {} : { y: layerY, translateZ: 120 }} className="cinema-detail absolute -left-4 bottom-5 hidden rounded-2xl border border-white/30 bg-white/95 p-4 text-ink shadow-xl sm:block"><span className="flex items-center gap-2 text-[10px] font-semibold"><Check size={13} className="text-brand-700"/>Marca + experiencia + operación</span><div className="mt-3 flex gap-1.5"><span className="h-1 w-12 rounded-full bg-brand-600"/><span className="h-1 w-8 rounded-full bg-mint"/><span className="h-1 w-5 rounded-full bg-slate-200"/></div></motion.div>
             </motion.div>
           </div>
         </div>
         <div className="mt-12 flex flex-col justify-between gap-4 border-t border-white/10 pt-5 text-[9px] font-medium uppercase tracking-[.12em] text-slate-400 sm:flex-row lg:mt-9"><span>Botánica / Demostración conceptual · No es un proyecto de cliente</span><span className="text-slate-300">Sin transacciones reales</span></div>
       </div>
-      {!reduced && <div className="absolute inset-x-0 bottom-0 hidden h-px bg-white/10 lg:block"><motion.div className="h-full bg-mint" style={{ width: progress }}/></div>}
+      {!reduced && <div className="absolute inset-x-0 bottom-0 hidden h-px bg-white/10 lg:block"><motion.div className="h-full origin-left bg-mint" style={{ scaleX: scrollYProgress }}/></div>}
     </div>
   </section>;
+}
+
+function StaticExperience() {
+  return <section id="experiencia" aria-labelledby="experience-title" className="scroll-mt-[76px] bg-ink py-20 text-white"><div className="container-page"><div className="grid items-center gap-12 lg:grid-cols-[.75fr_1.25fr]"><div><p className="text-[10px] font-bold uppercase tracking-[.2em] text-mint">Diseño visible. Inteligencia detrás.</p><h2 id="experience-title" className="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-.05em] sm:text-5xl">Cada detalle.<br/>En su lugar.</h2><p className="mt-6 max-w-sm text-base leading-8 text-slate-300">Una marca que se reconoce. Un producto que se entiende. Conectamos la experiencia de compra con la tecnología y la operación de tu negocio.</p></div><div className="relative mx-auto w-full max-w-[670px] pb-14 pr-14 sm:pr-20"><EcommerceMockup concept="botanica"/><div className="absolute bottom-0 right-0 w-[145px] sm:w-[195px] lg:w-[220px]"><EcommerceMockup concept="botanica" mobile/></div></div></div><p className="mt-9 border-t border-white/10 pt-5 text-[10px] leading-6 text-slate-300">Botánica / Demostración conceptual · No es un proyecto de cliente · Sin transacciones reales</p></div></section>;
+}
+
+export default function ImmersiveExperience() {
+  const enabled = useCinematicMotion();
+  return enabled ? <AnimatedExperience/> : <StaticExperience/>;
 }
