@@ -1,0 +1,28 @@
+import { ArrowUpRight, Check, Menu, Search, ShoppingBag } from "lucide-react";
+
+export const concepts = {
+  nomada: {
+    name: "nómada.", category: "Hogar & lifestyle", image: "/assets/nomada-interior.png",
+    title: "Habitar con intención.", subtitle: "Piezas que transforman espacios en historias.",
+    product: "Sillón Origen", price: "$8,900 MXN", color: "#5E493C", background: "#F6F1EA",
+  },
+  botanica: {
+    name: "botánica", category: "Belleza & cuidado personal", image: "/assets/botanica-skincare.png",
+    title: "Tu naturaleza, en equilibrio.", subtitle: "Un ritual consciente. Una piel que se siente bien.",
+    product: "Ritual esencial", price: "$980 MXN", color: "#354C3E", background: "#EDF1E9",
+  },
+};
+export type Concept = keyof typeof concepts;
+export type StoreView = "tienda" | "producto" | "carrito";
+
+type Props = { concept?: Concept; mobile?: boolean; view?: StoreView; onAdd?: () => void; added?: boolean; eager?: boolean };
+export default function EcommerceMockup({ concept = "nomada", mobile = false, view = "tienda", onAdd, added, eager = false }: Props) {
+  const store = concepts[concept];
+  return <div className={`relative overflow-hidden ${mobile ? "rounded-[1.8rem] border-[6px] border-[#243039] shadow-2xl" : "rounded-xl border border-slate-200/80 shadow-[0_25px_70px_rgba(16,24,32,.16)]"}`} style={{ background: store.background, color: store.color }}>
+    {mobile ? <div className="flex h-6 items-center justify-between bg-white px-3 text-[8px] font-bold text-slate-800"><span>9:41</span><span className="absolute left-1/2 h-3 w-12 -translate-x-1/2 rounded-full bg-[#243039]"/><span>▰</span></div> : <div className="flex h-8 items-center gap-1.5 border-b border-slate-200 bg-white px-3"><span className="h-1.5 w-1.5 rounded-full bg-slate-300"/><span className="h-1.5 w-1.5 rounded-full bg-slate-300"/><span className="h-1.5 w-1.5 rounded-full bg-slate-300"/><span className="mx-auto rounded bg-slate-50 px-8 py-0.5 text-[8px] text-slate-500">{concept}.example · Demostración</span></div>}
+    <div className="bg-white/80 py-1.5 text-center text-[7px] font-medium tracking-[.16em]">DISEÑO CONSCIENTE · HECHO PARA DURAR</div>
+    <div className={`flex items-center justify-between bg-white/80 ${mobile ? "px-3 py-3" : "px-6 py-4"}`}><span className={`font-serif ${mobile ? "text-lg" : "text-2xl"}`}>{store.name}</span>{!mobile && <div className="flex gap-5 text-[8px]"><span>Colección</span><span>Nuestra historia</span><span>El journal</span></div>}<div className="flex gap-3"><Search size={mobile ? 11 : 13}/><ShoppingBag size={mobile ? 11 : 13}/>{mobile && <Menu size={11}/>}</div></div>
+    {view === "tienda" ? <><div className={`relative ${mobile ? "h-[230px]" : "h-[270px] sm:h-[300px]"}`}><img src={store.image} alt={concept === "nomada" ? "Sillón de diseño y mesa de travertino en un interior cálido" : "Productos de cuidado de piel sobre una base de travertino"} fetchPriority={eager ? "high" : "auto"} loading={eager ? "eager" : "lazy"} className="h-full w-full object-cover"/><div className={`absolute ${mobile ? "inset-x-3 bottom-3" : "left-6 top-7 max-w-[52%]"}`}><div className="w-fit rounded-xl bg-white/85 p-3 backdrop-blur-sm sm:p-4"><p className="text-[7px] uppercase tracking-[.16em]">La nueva colección / 01</p><p className={`mt-2 font-serif leading-[1.05] ${mobile ? "text-[25px]" : "text-[28px] sm:text-[34px]"}`}>{store.title}</p>{!mobile && <p className="mt-2 max-w-36 text-[9px] leading-relaxed">{store.subtitle}</p>}<span className="mt-3 inline-flex items-center gap-3 border-b pb-1 text-[8px] font-bold">Descubrir colección <ArrowUpRight size={10}/></span></div></div></div><div className={`bg-white ${mobile ? "p-3" : "px-6 py-5"}`}><div className="flex justify-between text-[8px]"><span>Objetos extraordinarios. Todos los días.</span><span>01 — 03</span></div><div className="mt-3 grid grid-cols-3 gap-2">{[0,1,2].map((item) => <div key={item}><img src={store.image} alt={`${store.name} · detalle de la colección conceptual`} loading="lazy" className={`${mobile ? "h-12" : "h-20"} w-full rounded-sm object-cover`} style={{ objectPosition: ["80% 50%", "15% 65%", "55% 85%"][item] }}/><p className="mt-1 text-[7px]">{[store.product, "La colección", "Diseño esencial"][item]}</p></div>)}</div></div></> : <div className={`bg-white ${mobile ? "p-3" : "grid min-h-[412px] grid-cols-2 items-center gap-6 p-6"}`}><img src={store.image} alt={store.product} loading="lazy" className={`w-full rounded-lg object-cover ${mobile ? "h-44" : "h-[320px]"}`}/><div className={mobile ? "pt-4" : ""}><p className="text-[8px] uppercase tracking-widest">{view === "carrito" ? "Tu selección / 01" : "La colección esencial"}</p><p className="mt-3 font-serif text-2xl">{view === "carrito" ? "Una gran elección." : store.product}</p><p className="mt-3 text-xs">{store.price}</p><p className="mt-4 text-[10px] leading-5">{view === "carrito" ? `${store.product} · Cantidad: 1. Envío calculado al continuar.` : "Materiales elegidos con cuidado. Diseño que se siente tan bien como se ve."}</p><button type="button" onClick={onAdd} disabled={view === "carrito" || !onAdd} className="mt-5 flex w-full items-center justify-center gap-2 rounded-full px-3 py-3 text-[10px] font-semibold text-white transition enabled:hover:opacity-80 disabled:cursor-default" style={{ background: store.color }}>{added || view === "carrito" ? <><Check size={12}/> Añadido · Demostración</> : <>Añadir al carrito <ShoppingBag size={12}/></>}</button><p className="mt-3 text-center text-[8px] text-slate-500">Concepto de diseño · No realiza compras reales</p></div></div>}
+    {mobile && <div className="flex justify-center bg-white pb-2 pt-1"><span className="h-1 w-16 rounded-full bg-slate-800"/></div>}
+  </div>;
+}
